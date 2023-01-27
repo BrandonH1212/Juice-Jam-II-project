@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.Rendering.CameraUI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,8 +13,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 _movementDirectionNormalized = new Vector2(0,0);
     private Rigidbody2D _rigidbody2D = null;
 
+    // DEV:
+    public GameObject BasicShot;
+    public float TimeToShoot = 1;
+
     public float Health { get; private set; } = 100;
-    public float MovementSpeed { get; private set; } = 100;
+    public float MovementSpeed { get; private set; } = 1000;
     public float Shield { get; private set; }
     public float ShieldRegenerationSpeed { get; private set; }
     public float DamageReduction { get; private set; }
@@ -35,6 +38,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         InferMovementDirection();
+
+        TimeToShoot -= Time.deltaTime;
+        if (TimeToShoot < 0) 
+        {
+            var newProjectileObject = Instantiate(BasicShot);
+            newProjectileObject.transform.position = transform.position;
+            TimeToShoot = 0.2f;
+        }
     }
 
     void InferMovementDirection() 
@@ -50,7 +61,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody2D.AddForce(new Vector2(_movementDirectionNormalized.x, _movementDirectionNormalized.y));
-        _rigidbody2D.velocity = Vector3.ClampMagnitude(_rigidbody2D.velocity, 10); 
+        _rigidbody2D.velocity = Vector3.ClampMagnitude(_rigidbody2D.velocity, 100); 
     }
 
     public void TakeDamage(float damage) 

@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     public float Zoom
     {
         get => _camera != null ? _camera.orthographicSize : 0f;
-        private set => _camera.orthographicSize = Mathf.Clamp(value, 5, 50);
+        private set => _camera.orthographicSize = Mathf.Clamp(value, 100f, 300f);
     }
 
     // Start is called before the first frame update
