@@ -1,0 +1,69 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using static UnityEditor.Rendering.CameraUI;
+
+public class PlayerController : MonoBehaviour
+{
+    /// <summary>
+    /// The direction that the player is moving right now.
+    /// The player position will be updated using this field, in fixedUpdate().
+    /// </summary>
+    private Vector2 _movementDirectionNormalized = new Vector2(0,0);
+    private Rigidbody2D _rigidbody2D = null;
+
+    public float Health { get; private set; } = 100;
+    public float MovementSpeed { get; private set; } = 100;
+    public float Shield { get; private set; }
+    public float ShieldRegenerationSpeed { get; private set; }
+    public float DamageReduction { get; private set; }
+    public float DamagePower { get; private set; }
+
+    public UnityEvent OnDamage;
+    public UnityEvent OnKilled;
+    public UnityEvent OnShieldBroken;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        InferMovementDirection();
+    }
+
+    void InferMovementDirection() 
+    {
+        Vector2 output = new(0,0);
+        if (Input.GetKey(KeyCode.W)) output.y += MovementSpeed;
+        if (Input.GetKey(KeyCode.A)) output.x -= MovementSpeed;
+        if (Input.GetKey(KeyCode.S)) output.y -= MovementSpeed;
+        if (Input.GetKey(KeyCode.D)) output.x += MovementSpeed;
+        _movementDirectionNormalized = output;
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidbody2D.AddForce(new Vector2(_movementDirectionNormalized.x, _movementDirectionNormalized.y));
+        _rigidbody2D.velocity = Vector3.ClampMagnitude(_rigidbody2D.velocity, 10); 
+    }
+
+    public void TakeDamage(float damage) 
+    {
+        if (Shield > 0)
+        {
+            if (Shield - damage <= 0) OnShieldBroken.Invoke();
+            Shield = Math.Max(0, Shield - damage);
+        }
+        else
+        {
+            if (Health - damage <= 0) OnKilled.Invoke();
+            Health = Math.Max(0, Health - damage);
+        }
+    }
+}
