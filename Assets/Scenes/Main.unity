@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 1835787190}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,8 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2b0748c09e92f46a58d89427719f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BasicShot: {fileID: 1190199990104163415, guid: 0bffd918d2a45fa4d9cca0fa04031d29, type: 3}
-  TimeToShoot: 100
+  BasicShot: {fileID: 1646142287318459893, guid: b4ab2ecca25f66349b7bcdbf57fe9002, type: 3}
+  TimeToShoot: 1
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -269,6 +269,7 @@ MonoBehaviour:
   OnShieldBroken:
     m_PersistentCalls:
       m_Calls: []
+  InitialCard: {fileID: 11400000, guid: 1ee239cb034d2c14f877738681ff191f, type: 2}
 --- !u!4 &1835787189
 Transform:
   m_ObjectHideFlags: 0
