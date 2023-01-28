@@ -22,12 +22,3 @@ public class Projectile : MonoBehaviour
     }
 }
 
-[Serializable]
-public class ProjectileSettings
-{
-    // public Modifiers BaceProjectileModifiers;
-    [SerializeField] public float PeriodicDamage  = 1;
-    [SerializeField] public float PeriodicDamageInterval = 1;
-    [SerializeField] public float SplashDamage = 1;
-    [SerializeField] public float SplashDamageRadius = 1;
-}

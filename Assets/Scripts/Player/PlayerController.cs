@@ -12,13 +12,16 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private Vector2 _movementDirectionNormalized = new Vector2(0,0);
     private Rigidbody2D _rigidbody2D = null;
+    private SpriteRenderer _spriteRenderer = null;
+    private Animator _animator = null;
+    
 
     // DEV:
     public GameObject BasicShot;
     public float TimeToShoot = 1;
 
     public float Health { get; private set; } = 100;
-    public float MovementSpeed { get; private set; } = 1000;
+    public float MovementSpeed { get; private set; } = 50;
     public float Shield { get; private set; }
     public float ShieldRegenerationSpeed { get; private set; }
     public float DamageReduction { get; private set; }
@@ -32,6 +35,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -61,7 +66,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody2D.AddForce(new Vector2(_movementDirectionNormalized.x, _movementDirectionNormalized.y));
-        _rigidbody2D.velocity = Vector3.ClampMagnitude(_rigidbody2D.velocity, 100); 
+        _rigidbody2D.velocity = Vector3.ClampMagnitude(_rigidbody2D.velocity, 100);
+
+        // Update the animator 
+        _animator.SetBool("IsMoving", _movementDirectionNormalized.magnitude > 0);
+
+        // flip the sprite based on the velocity
+        _spriteRenderer.flipX = _rigidbody2D.velocity.x > 0;
+
     }
 
     public void TakeDamage(float damage) 
