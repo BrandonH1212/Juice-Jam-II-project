@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToSpawn: {fileID: 4613350625003615452, guid: b159d172027e5d946bf3b1c181bb45c2, type: 3}
-  Radius: 8
-  Interval: 8
+  Interval: 25
 --- !u!114 &2132992141530511641
 MonoBehaviour:
   m_ObjectHideFlags: 0

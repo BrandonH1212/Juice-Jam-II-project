@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2b0748c09e92f46a58d89427719f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BasicShot: {fileID: 4613350625003615452, guid: b159d172027e5d946bf3b1c181bb45c2, type: 3}
+  BasicShot: {fileID: 1190199990104163415, guid: 0bffd918d2a45fa4d9cca0fa04031d29, type: 3}
   TimeToShoot: 1
   OnDamage:
     m_PersistentCalls:
@@ -245,7 +245,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 10
+  m_LinearDrag: 1
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -354,7 +354,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 150
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
