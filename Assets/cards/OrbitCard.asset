@@ -15,11 +15,11 @@ MonoBehaviour:
   Rarity: 0
   ModifiersType: 0
   Info:
-    cardName: test
+    cardName: Orbit
     cardDescription: 
     cardRarity: 0
     cardIcon: {fileID: 0}
   ModifiersOnCards: []
   ModifiersOnPlayer: []
   ModifiersOnProjectiles: []
-  Projectile: {fileID: 0}
+  Projectile: {fileID: 1646142287318459893, guid: b4ab2ecca25f66349b7bcdbf57fe9002, type: 3}

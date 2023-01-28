@@ -15,11 +15,14 @@ MonoBehaviour:
   Rarity: 0
   ModifiersType: 0
   Info:
-    cardName: test
-    cardDescription: 
+    cardName: Basic Card
+    cardDescription: This is the most basic form of card.
     cardRarity: 0
     cardIcon: {fileID: 0}
-  ModifiersOnCards: []
+  ModifiersOnCards:
+  - PropertyToAffect: 2
+    Operator: 0
+    Value: 1
   ModifiersOnPlayer: []
   ModifiersOnProjectiles: []
-  Projectile: {fileID: 0}
+  Projectile: {fileID: 4613350625003615452, guid: b159d172027e5d946bf3b1c181bb45c2, type: 3}
