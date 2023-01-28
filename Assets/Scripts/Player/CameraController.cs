@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     {
         _camera = GetComponent<Camera>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         zoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         zoom = Mathf.Clamp(zoom, minZoom, maxZoom);

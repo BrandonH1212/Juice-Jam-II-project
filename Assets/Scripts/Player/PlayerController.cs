@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) output.y -= MovementSpeed;
         if (Input.GetKey(KeyCode.D)) output.x += MovementSpeed;
 
-        transform.rotation = Quaternion.EulerRotation(0,0, Mathf.Atan2(output.y, output.x) * 180f / (float)Math.PI);
+        //transform.rotation = Quaternion.EulerRotation(0,0, Mathf.Atan2(output.y, output.x) * 180f / (float)Math.PI);
 
         _movementDirectionNormalized = output;
     }

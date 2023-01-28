@@ -18,16 +18,16 @@ MonoBehaviour:
     cardRarity: 0
     cardIcon: {fileID: 0}
   playerModifiers:
-    Health: 0
+    Health: -10
     MovementSpeed: 0
     Shields: 0
     ShieldRegeneration: 0
   ProjectileSettings:
     BaceProjectileModifiers:
-      Damage: 0
-      Size: 0
-      Speed: 0
-      FireRate: 0
+      Damage: 10
+      Size: 1
+      Speed: 100
+      FireRate: 5
       LifeSteal: 0
       Penetration: 0
       CriticalChance: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   effectModifiers:
     Damage: 0
     Size: 0
-    Speed: 0
+    Speed: 10
     FireRate: 0
     LifeSteal: 0
     Penetration: 0
