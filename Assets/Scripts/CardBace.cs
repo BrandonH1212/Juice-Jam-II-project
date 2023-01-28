@@ -20,11 +20,13 @@ public enum CardModifiersType
     Right,       // modifiers get added to the card to the right of this card
     NotLeft,     // modifiers get added to all cards except the card to the left of this card
     NotRight,    // modifiers get added to all cards except the card to the right of this card
+    Adjacent,    // modifiers get added to the card to the left and right of this card
     Notadjacent  // modifiers get added to all cards except the card to the left and right of this card
 }
 
 public enum TragetType
 {
+    Fixed,
     Random,
     Closest,
     Furthest,
@@ -51,7 +53,7 @@ public struct Modifiers
     public float Speed;
     public float FireRate;
     public float LifeSteal;
-    public float Penetration;
+    public int Penetration;
     public float CriticalChance;
     public float CriticalDamageModifier;
 }
