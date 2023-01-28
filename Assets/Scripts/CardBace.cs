@@ -23,6 +23,16 @@ public enum CardModifiersType
     Notadjacent  // modifiers get added to all cards except the card to the left and right of this card
 }
 
+public enum TragetType
+{
+    Random,
+    Closest,
+    Furthest,
+    MostHealth,
+    LeastHealth,
+}
+
+
 
 [System.Serializable]
 public struct CardInfo
@@ -47,6 +57,16 @@ public struct Modifiers
 }
 
 [System.Serializable]
+public struct PlayerModifiers
+{
+    public float Health;
+    public float MovementSpeed;
+    public float Shields;
+    public float ShieldRegeneration;
+}
+
+
+[System.Serializable]
 public struct ProjectileSettings
 {
     public Modifiers BaceProjectileModifiers;
@@ -54,7 +74,9 @@ public struct ProjectileSettings
     public float PeriodicDamageInterval;
     public float SplashDamage;
     public float SplashDamageRadius;
+    public float TargetAttackRange;
     public GameObject ProjectilePrefab;
+    public TragetType TragetType;
 
 }
 
@@ -62,8 +84,10 @@ public struct ProjectileSettings
 public class CardBace : ScriptableObject
 {
     public CardInfo cardInfo;
+    public PlayerModifiers playerModifiers;
     public ProjectileSettings ProjectileSettings;
     public Modifiers effectModifiers;
     public CardModifiersType cardModifiersType;
+
 }
 
