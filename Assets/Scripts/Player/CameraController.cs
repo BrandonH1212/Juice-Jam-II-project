@@ -5,29 +5,29 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private Camera _camera;
-
     public Transform TargetToFollow;
+    public float zoomSpeed = 4f;
+    public float minZoom = 10f;
+    public float maxZoom = 35f;
+    public float zoom;
+    public float zoomEasing = 10f;
+    public float followSpeed = 2f;
 
-    public float Zoom
-    {
-        get => _camera != null ? _camera.orthographicSize : 0f;
-        private set => _camera.orthographicSize = Mathf.Clamp(value, 100f, 300f);
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         _camera = GetComponent<Camera>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Zoom += Input.GetAxis("Mouse ScrollWheel") * -10;
-        if (TargetToFollow != null) 
+        zoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
+
+        _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, zoom, Time.deltaTime * zoomEasing);
+        if (TargetToFollow != null)
         {
-            Vector3 playerPosition = TargetToFollow.transform.localPosition;
-            transform.localPosition = new Vector3(playerPosition.x, playerPosition.y, transform.localPosition.z);
-        } 
+            Vector2 NewPos = Vector2.Lerp((Vector2)transform.position, (Vector2)TargetToFollow.position, Time.deltaTime * followSpeed);
+            transform.position = new Vector3(NewPos.x, NewPos.y, transform.position.z);
+
+        }
     }
 }
