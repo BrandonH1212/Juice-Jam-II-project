@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Unit : MonoBehaviour
 {
+    const float minPathUpdateTime = .2f;
+
     public Transform target;
     float speed = 5;
     Vector3[] path;
@@ -10,12 +12,7 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("RequestPath", 0f, 0.25f);
-    }
-
-    void RequestPath()
-    {
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        StartCoroutine(UpdatePath());
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
@@ -50,6 +47,22 @@ public class Unit : MonoBehaviour
                 yield return null;
 
             }
+        }
+    }
+
+    IEnumerator UpdatePath()
+    {
+
+        if (Time.timeSinceLevelLoad < .3f)
+        {
+            yield return new WaitForSeconds(.3f);
+        }
+        PathRequestManager.RequestPath(new PathRequest(transform.position, target.position, OnPathFound));
+
+        while (true)
+        {
+            yield return new WaitForSeconds(minPathUpdateTime);
+            PathRequestManager.RequestPath(new PathRequest(transform.position, target.position, OnPathFound));
         }
     }
 
