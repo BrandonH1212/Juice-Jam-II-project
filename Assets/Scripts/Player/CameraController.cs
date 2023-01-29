@@ -25,7 +25,9 @@ public class CameraController : MonoBehaviour
         _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, zoom, Time.deltaTime * zoomEasing);
         if (TargetToFollow != null)
         {
-            Vector2 NewPos = Vector2.Lerp((Vector2)transform.position, (Vector2)TargetToFollow.position, Time.deltaTime * followSpeed);
+            Vector2 camera = transform.position;
+            Vector2 target = TargetToFollow.position;
+            Vector2 NewPos = Vector2.Lerp(camera, target, Time.deltaTime * followSpeed * Vector2.Distance(camera, target));
             transform.position = new Vector3(NewPos.x, NewPos.y, transform.position.z);
 
         }
