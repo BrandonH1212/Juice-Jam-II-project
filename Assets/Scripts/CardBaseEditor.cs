@@ -41,7 +41,7 @@ public class CardBaseEditor : Editor
 
     void OnEnable()
     {
-        BehaviourTypeProperty = serializedObject.FindProperty("BehaviourType");
+        // BehaviourTypeProperty = serializedObject.FindProperty("BehaviourType");
     }
 
     public static IEnumerable<Type> GetTypesWithAttribute(Type attributeType)
@@ -56,26 +56,26 @@ public class CardBaseEditor : Editor
         //}
     }
 
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-        // EditorGUILayout.PropertyField(lookAtPoint);
-        base.OnInspectorGUI();
+    //public override void OnInspectorGUI()
+    //{
+    //    serializedObject.Update();
+    //    // EditorGUILayout.PropertyField(lookAtPoint);
+    //    base.OnInspectorGUI();
 
-        CardBase obj = (serializedObject.targetObject as CardBase);
+    //    CardBase obj = (serializedObject.targetObject as CardBase);
         
-        List<Type> allTypesAvailable = new() { null };
-        allTypesAvailable = allTypesAvailable.Concat(GetTypesWithAttribute(typeof(CardBehaviourAttribute))).ToList();
+    //    List<Type> allTypesAvailable = new() { null };
+    //    allTypesAvailable = allTypesAvailable.Concat(GetTypesWithAttribute(typeof(CardBehaviourAttribute))).ToList();
 
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Behaviour Name:");
-        List<string> typesName = new() { "" };
-        typesName = typesName.Concat(allTypesAvailable.ToList().Where(t => t != null).Select(t => t.Name).ToList()).ToList();
-        obj.BehaviourTypeName = typesName.ToList()[EditorGUILayout.Popup(typesName.IndexOf(obj.BehaviourTypeName), typesName.ToArray())];
-        EditorGUILayout.EndHorizontal();
+    //    EditorGUILayout.BeginHorizontal();
+    //    EditorGUILayout.LabelField("Behaviour Name:");
+    //    List<string> typesName = new() { "" };
+    //    typesName = typesName.Concat(allTypesAvailable.ToList().Where(t => t != null).Select(t => t.Name).ToList()).ToList();
+    //    obj.BehaviourTypeName = typesName.ToList()[EditorGUILayout.Popup(typesName.IndexOf(obj.BehaviourTypeName), typesName.ToArray())];
+    //    EditorGUILayout.EndHorizontal();
 
-        serializedObject.ApplyModifiedProperties();
-    }
+    //    serializedObject.ApplyModifiedProperties();
+    //}
 
     //public override void OnInspectorGUI()
     //{

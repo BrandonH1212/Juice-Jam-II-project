@@ -143,23 +143,23 @@ public class PlayerController : MonoBehaviour
     public UnityEvent OnDamage;
     public UnityEvent OnKilled;
     public UnityEvent OnShieldBroken;
-    public UnityEvent<List<ModifierOnCards>> OnEffectsChanged = new();
+    public UnityEvent<List<Modifier>> OnEffectsChanged = new();
 
     public List<CardBase> InitialCards;
 
     public List<Tuple<CardBase, Component>> EquipedCards = new();
 
-    public List<ModifierOnCards> GetModifierOnCards() 
-    {
-        return EquipedCards[0].Item1.ModifiersOnCards;
-    }
+    //public List<Modifier> GetModifierOnCards() 
+    //{
+    //    // return EquipedCards[0].Item1.ModifiersOnCards;
+    //}
 
     public void EquipCard(CardBase c) 
     {
-        CardBehaviour newlyAddedInstance = this.gameObject.AddComponent(CardBehaviourAttribute.GetTypeWithBehaviourName(c.BehaviourTypeName)) as CardBehaviour;
-        newlyAddedInstance.CurrentCard = c;
-        EquipedCards.Add(new Tuple<CardBase, Component>(c, newlyAddedInstance));
-        OnEffectsChanged.Invoke(c.ModifiersOnCards);
+        //CardBehaviour newlyAddedInstance = this.gameObject.AddComponent(CardBehaviourAttribute.GetTypeWithBehaviourName(c.BehaviourTypeName)) as CardBehaviour;
+        //newlyAddedInstance.CurrentCard = c;
+        //EquipedCards.Add(new Tuple<CardBase, Component>(c, newlyAddedInstance));
+        //OnEffectsChanged.Invoke(c.ModifiersOnCards);
     }
 
     // Start is called before the first frame update
@@ -173,7 +173,17 @@ public class PlayerController : MonoBehaviour
         //    CardBehaviourAttribute.GetBehaviourType(newVal.BehaviourName);
         //};
 
-        foreach (CardBase c in InitialCards) EquipCard(c);
+        // foreach (CardBase c in InitialCards) EquipCard(c);
+
+        int currentIndex = 0;
+        foreach (CardBase card in InitialCards) 
+        {
+            Debug.Log($"Card {card.Info.cardName}: Final Damage - {card.GetFinalValue(InitialCards, currentIndex)[Stat.Damage]}");
+            currentIndex++;
+        }
+
+        
+
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();

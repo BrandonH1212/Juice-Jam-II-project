@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16437974b82a9dc4e869b5e2260f47a5, type: 3}
-  m_Name: OrbitCard
+  m_Name: MoreCard
   m_EditorClassIdentifier: 
   Rarity: 0
-  ModifiersType: 0
   Info:
-    cardName: Orbit
+    cardName: MoreCard
     cardDescription: 
     cardRarity: 0
     cardIcon: {fileID: 0}
-  ModifiersOnCards: []
-  ModifiersOnPlayer: []
-  ModifiersOnProjectiles: []
-  Projectile: {fileID: 1646142287318459893, guid: b4ab2ecca25f66349b7bcdbf57fe9002, type: 3}
+  BaseValue:
+  - StatToAffect: 0
+    Value: 0
+  Modifiers:
+  - Targets: 0
+    StatToAffect: 0
+    Operator: 1
+    Value: 2
