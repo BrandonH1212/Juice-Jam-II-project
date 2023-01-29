@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
     // public float TimeToShoot = 1;
 
     public float Health { get; private set; } = 100;
-    public float MovementSpeed { get; private set; } = 50;
+    public float MovementSpeed { get; private set; } = 10;
     public float Shield { get; private set; }
     public float ShieldRegenerationSpeed { get; private set; }
     public float DamageReduction { get; private set; }
@@ -207,6 +207,7 @@ public class PlayerController : MonoBehaviour
     void InferMovementDirection() 
     {
         Vector2 output = new(0,0);
+
         if (Input.GetKey(KeyCode.W)) output.y += MovementSpeed;
         if (Input.GetKey(KeyCode.A)) output.x -= MovementSpeed;
         if (Input.GetKey(KeyCode.S)) output.y -= MovementSpeed;
@@ -214,13 +215,13 @@ public class PlayerController : MonoBehaviour
 
         //transform.rotation = Quaternion.EulerRotation(0,0, Mathf.Atan2(output.y, output.x) * 180f / (float)Math.PI);
 
-        _movementDirectionNormalized = output;
+        _movementDirectionNormalized = 10 * output;
     }
 
     private void FixedUpdate()
     {
         _rigidbody2D.AddForce(new Vector2(_movementDirectionNormalized.x, _movementDirectionNormalized.y));
-        _rigidbody2D.velocity = Vector3.ClampMagnitude(_rigidbody2D.velocity, 100);
+        _rigidbody2D.velocity = Vector3.ClampMagnitude(_rigidbody2D.velocity, MovementSpeed);
 
         // Update the animator 
         _animator.SetBool("IsMoving", _movementDirectionNormalized.magnitude > 0);
