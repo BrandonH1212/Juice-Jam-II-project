@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="CardView" src="project://database/Assets/UI/CardView.uxml?fileID=9197481963319205126&amp;guid=b3d3f5a1b79fd0e4aa79a6a6a87d87f8&amp;type=3#CardView" />
+    <ui:VisualElement name="root" view-data-key="root" style="width: 100%; height: 100%; flex-direction: row; align-items: flex-start; justify-content: flex-start;">
+        <ui:VisualElement style="flex-direction: row; align-items: stretch;" />
+        <ui:Instance template="CardView" name="CardView" style="width: 65px;" />
+    </ui:VisualElement>
+</ui:UXML>

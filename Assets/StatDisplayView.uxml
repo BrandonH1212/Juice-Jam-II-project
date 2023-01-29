@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/game%20style.uss?fileID=7433441132597879392&amp;guid=6ec5d9dedb517fe4fbc38ec06d450e33&amp;type=3#game style" />
+    <ui:VisualElement style="align-items: auto; flex-direction: row; justify-content: flex-end; -unity-background-scale-mode: stretch-to-fill; flex-wrap: nowrap; width: 100%; height: 100%; background-color: rgb(44, 62, 80);">
+        <ui:VisualElement name="StatDisplayImg" view-data-key="img" style="background-image: url(&apos;project://database/Assets/UI/icons/placeholder%20icon.png?fileID=21300000&amp;guid=a87fb8d347b3a9e499aa2aed3bbd2420&amp;type=3#placeholder icon&apos;); align-items: auto; background-color: rgba(255, 255, 255, 0); height: 100px; width: 100px; -unity-background-image-tint-color: rgb(0, 0, 0); padding-right: 0; padding-left: 0; -unity-background-scale-mode: scale-to-fit; position: relative; flex-grow: 0; justify-content: flex-start; max-width: none; max-height: none; flex-wrap: nowrap;" />
+        <ui:Label text="XXX" display-tooltip-when-elided="true" view-data-key="statVal" class="StatText" style="align-items: auto; flex-direction: column; flex-grow: 1; -unity-font-style: normal; font-size: 80%; white-space: normal; -unity-text-align: middle-center; -unity-text-outline-width: 0; justify-content: space-between;" />
+    </ui:VisualElement>
+</ui:UXML>
