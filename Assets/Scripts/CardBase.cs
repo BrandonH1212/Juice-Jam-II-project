@@ -35,8 +35,21 @@ public struct CardInfo
 
 public enum Stat 
 {
+    TargetType,
+    FirePattern,
     Damage,
+    ProjectileSpeed,
+    ProjectileSize,
     FireRate,
+    Penetration,
+    PeriodicDamage,
+    PeriodicInterval,
+    PeriodicCount,
+    SplashDamage,
+    SplashRadius,
+    CriticalChance,
+    CriticalDamage,
+    LifeSteal,
 }
 
 public enum EffectOperator 
