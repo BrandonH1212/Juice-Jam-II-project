@@ -1,0 +1,227 @@
+<Project>
+  <Name>GameJam2</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Player</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="529" top="52" />
+        <Size width="351" height="383" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Vector2 _movementDirectionNormalized = new Vector2(0,0)</Member>
+        <Member type="Field">private Rigidbody2D _rigidbody2D = null</Member>
+        <Member type="Field">private SpriteRenderer _spriteRenderer</Member>
+        <Member type="Field">private Animator _animator = null</Member>
+        <Member type="Property">public float Health { get; set; }</Member>
+        <Member type="Method">public void TakeDamage(float damage)</Member>
+        <Member type="Property">public float MovementSpeed { get; set; }</Member>
+        <Member type="Property">public float Shield { get; set; }</Member>
+        <Member type="Property">public float ShieldRegenerationSpeed { get; set; }</Member>
+        <Member type="Property">public float DamageReduction { get; set; }</Member>
+        <Member type="Property">public float DamagePower { get; set; }</Member>
+        <Member type="Event">public event UnityEvent OnDamage</Member>
+        <Member type="Event">public event UnityEvent OnKilled</Member>
+        <Member type="Event">public event UnityEvent OnShieldBroken</Member>
+        <Member type="Method">void Start()</Member>
+        <Member type="Method">void Update()</Member>
+        <Member type="Method">void InferMovementDirection()</Member>
+        <Member type="Method">private void FixedUpdate()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CameraController</Name>
+        <Access>Public</Access>
+        <Location left="319" top="52" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Camera _camera</Member>
+        <Member type="Field">public Transform TargetToFollow</Member>
+        <Member type="Field">public float zoomSpeed = 4.0</Member>
+        <Member type="Field">public float minZoom</Member>
+        <Member type="Field">public float maxZoom = 35.0</Member>
+        <Member type="Field">public float zoom</Member>
+        <Member type="Field">public float zoomEasing</Member>
+        <Member type="Field">public float followSpeed = 2.0</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>CardBace</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>CardBace</Name>
+        <Access>Public</Access>
+        <Location left="523" top="51" />
+        <Size width="222" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public CardInfo cardInfo</Member>
+        <Member type="Field">public PlayerModifiers playerModifiers</Member>
+        <Member type="Field">public ProjectileSettings ProjectileSettings</Member>
+        <Member type="Field">public Modifiers effectModifiers</Member>
+        <Member type="Field">public CardModifiersType cardModifiersType</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>ProjectileSettings</Name>
+        <Access>Public</Access>
+        <Location left="1416" top="439" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>Modifiers_BaceProjectileModifiers</Value>
+        <Value>float_PeriodicDamage</Value>
+        <Value>float_PeriodicDamageInterval</Value>
+        <Value>float_SplashDamage</Value>
+        <Value>float_SplashDamageRadius</Value>
+        <Value>float_TargetAttachRange</Value>
+        <Value>GameObject_ProjectilePrefab</Value>
+        <Value>TragetType_TragetType</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>PlayerModifiers</Name>
+        <Access>Public</Access>
+        <Location left="1187" top="435" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>float_Health</Value>
+        <Value>float_MovementSpeed</Value>
+        <Value>float_Shields</Value>
+        <Value>float_ShieldRegeneration</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Modifiers</Name>
+        <Access>Public</Access>
+        <Location left="964" top="430" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>float_Damage</Value>
+        <Value>float_Size</Value>
+        <Value>float_Speed</Value>
+        <Value>float_FireRate</Value>
+        <Value>float_LifeSteal</Value>
+        <Value>int_Penetration</Value>
+        <Value>float_CriticalChance</Value>
+        <Value>float_CriticalDamageModifier</Value>
+      </Entity>
+      <Entity type="Comment">
+        <Text>enum type is prefixed with an underscore. EX: string_</Text>
+        <Location left="723" top="666" />
+        <Size width="160" height="75" />
+      </Entity>
+      <Entity type="Enum">
+        <Name>CardInfo</Name>
+        <Access>Public</Access>
+        <Location left="723" top="429" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>string_cardName</Value>
+        <Value>string_cardDescription</Value>
+        <Value>CardRarity_cardRarity</Value>
+        <Value>Sprite_cardIcon</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>TragetType</Name>
+        <Access>Public</Access>
+        <Location left="516" top="432" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>Fixed</Value>
+        <Value>Random</Value>
+        <Value>Closest</Value>
+        <Value>Furthest</Value>
+        <Value>MostHealth</Value>
+        <Value>LeastHealth</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>CardModifiersType</Name>
+        <Access>Public</Access>
+        <Location left="305" top="434" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>All</Value>
+        <Value>AllLeft</Value>
+        <Value>AllRight</Value>
+        <Value>Left</Value>
+        <Value>Right</Value>
+        <Value>NotLeft</Value>
+        <Value>NotRight</Value>
+        <Value>Adjacent</Value>
+        <Value>Notadjacent</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>CardRarity</Name>
+        <Access>Public</Access>
+        <Location left="98" top="434" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Value>Common</Value>
+        <Value>Uncommon</Value>
+        <Value>Rare</Value>
+        <Value>Epic</Value>
+        <Value>Legendary</Value>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="1" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="5" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="6" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="7" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="8" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
