@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1166041851078576055}
   - component: {fileID: 429189016272671351}
   - component: {fileID: 2132992141530511641}
+  - component: {fileID: 8360768184118146950}
   m_Layer: 0
   m_Name: CircularShot
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectToSpawn: {fileID: 4613350625003615452, guid: b159d172027e5d946bf3b1c181bb45c2, type: 3}
   Interval: 25
+  ProjectileParent: {fileID: 1190199990104163415}
 --- !u!114 &2132992141530511641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,3 +63,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToDestruct: 3
   RemainingTime: 0
+--- !u!114 &8360768184118146950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190199990104163415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bedfcc1c89dba94eb037a3a2f727bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatsApplied: []

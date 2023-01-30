@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16437974b82a9dc4e869b5e2260f47a5, type: 3}
-  m_Name: MoreCard
+  m_Name: SpeedUp
   m_EditorClassIdentifier: 
   Rarity: 0
   Info:
-    cardName: MoreCard
-    cardDescription: 
+    cardName: SppedUp
+    cardDescription: Speed up all fire rate by 2.
     cardRarity: 0
     cardIcon: {fileID: 0}
-  BaseValue:
-  - StatToAffect: 0
-    Value: 0
+  BaseValue: []
   Modifiers:
   - Targets: 0
-    StatToAffect: 0
+    StatToAffect: 4
     Operator: 1
-    Value: 2
+    Value: 10
+  ProjectilePrefab: {fileID: 0}
+  BehaviourName: 

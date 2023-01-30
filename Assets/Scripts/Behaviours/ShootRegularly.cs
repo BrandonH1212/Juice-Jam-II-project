@@ -9,6 +9,7 @@ public abstract class CardBehaviour : MonoBehaviour
 {
     public CardBaseInstance CurrentCard;
     public PlayerController PlayerController;
+    
     protected Dictionary<Stat, float> _effectiveStatThisCard = new();
 
     public void Subscribe() 
@@ -19,7 +20,7 @@ public abstract class CardBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Return whether the current card is removed. If removed, destroy this script.
+    /// Return whether the current card is removed in the player cards list. If removed, destroy this script.
     /// </summary>
     /// <returns></returns>
     private bool CheckForUnsubscribion() 
@@ -38,18 +39,29 @@ public abstract class CardBehaviour : MonoBehaviour
 
     public void UpdateEffectiveStats() 
     {
-        if (!CheckForUnsubscribion()) 
-        {
-            if (PlayerController.TryGetEffectiveStatsOnCard(CurrentCard, out Dictionary<Stat, float> effectiveStats)) 
-            {
-                _effectiveStatThisCard = effectiveStats;
-            }
-        }
+        if (CheckForUnsubscribion()) return;
+        if (PlayerController.TryGetEffectiveStatsOnCard(CurrentCard, out Dictionary<Stat, float> effectiveStats)) _effectiveStatThisCard = effectiveStats;
     }
 
-    public GameObject ShootProjectile() 
+    /// <summary>
+    /// Spawn a projectile prefab at the player location.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject ShootProjectile() => ShootProjectile(transform.position);
+
+    /// <summary>
+    /// Spawn a projectile prefab at a given position.
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public GameObject ShootProjectile(Vector3 position)
     {
-        if (CurrentCard.CardBase.ProjectilePrefab != null) return Instantiate(CurrentCard.CardBase.ProjectilePrefab, transform.position, new Quaternion());
+        if (CurrentCard.CardBase.ProjectilePrefab != null) 
+        {
+            var projectileObject = Instantiate(CurrentCard.CardBase.ProjectilePrefab, position, new Quaternion());
+            projectileObject.GetComponent<Projectile>().ApplyStats(_effectiveStatThisCard);
+            return projectileObject;
+        }
         else return null;
     }
 }
@@ -79,20 +91,10 @@ public class ShootRegularly : CardBehaviour
 [CardBehaviour("ShootOnce")]
 public class ShootOnce : CardBehaviour
 {
-    public bool Shot = false;
-
     public void Start()
     {
         base.Subscribe();
-    }
-
-    public void FixedUpdate()
-    {
-        if (CurrentCard != null && !Shot)
-        {
-            ShootProjectile();
-            Shot = true;
-        }
+        ShootProjectile();
     }
 }
 
