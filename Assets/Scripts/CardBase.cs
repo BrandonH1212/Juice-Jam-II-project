@@ -53,22 +53,22 @@ public enum Stat
 
 public static class StatInfo
 {
-    public static Dictionary<Stat, StatUIInfoStruct> StatNames = new()
+    public static Dictionary<Stat, StatUIInfoStruct> Data = new()
     {
-        { Stat.Range, new StatUIInfoStruct { DisplayName = "Range", ToolTipDescription = "Tracking range for firing", Icon = "range icon", IconColor = Color.blue } },
-        { Stat.Damage, new StatUIInfoStruct { DisplayName = "Damage", ToolTipDescription = "Damage inflicted on contact", Icon = "damage icon", IconColor = Color.red } },
-        { Stat.ProjectileSpeed, new StatUIInfoStruct { DisplayName = "Bullet Speed", ToolTipDescription = "Traveling speed of bullets", Icon = "bullet speed icon", IconColor = Color.blue } },
-        { Stat.ProjectileSize, new StatUIInfoStruct { DisplayName = "Size", ToolTipDescription = "Bullet size", Icon = "size icon", IconColor = Color.blue } },
-        { Stat.FireRate, new StatUIInfoStruct { DisplayName = "Fire Rate", ToolTipDescription = "Frequency of firing", Icon = "fire rate icon", IconColor = Color.yellow } },
-        { Stat.Penetration, new StatUIInfoStruct { DisplayName = "Penetration", ToolTipDescription = "Amount of enemies that can be passed through before the bullet is destroyed", Icon = "penetration icon", IconColor = Color.yellow } },
-        { Stat.PeriodicDamage, new StatUIInfoStruct { DisplayName = "Periodic Damage", ToolTipDescription = "Damage inflicted on each damage tick", Icon = "periodic damage icon", IconColor = Color.green } },
-        { Stat.PeriodicInterval, new StatUIInfoStruct { DisplayName = "Periodic Damage Interval", ToolTipDescription = "Time between each tick of periodic damage", Icon = "periodic interval icon", IconColor = Color.green } },
-        { Stat.PeriodicCount, new StatUIInfoStruct { DisplayName = "Periodic Damage Duration", ToolTipDescription = "Amount of damage ticks before the periodic damage wears off", Icon = "periodic count icon", IconColor = Color.green } },
-        { Stat.SplashDamage, new StatUIInfoStruct { DisplayName = "Splash Damage", ToolTipDescription = "Damage inflicted to nearby ememies on contact", Icon = "splash damage icon", IconColor = Color.magenta } },
-        { Stat.SplashRadius, new StatUIInfoStruct { DisplayName = "Splash Radius", ToolTipDescription = "Range of effect of the splash damage", Icon = "splash radius icon", IconColor = Color.magenta } },
-        { Stat.CriticalChance, new StatUIInfoStruct { DisplayName = "Critical Chance", ToolTipDescription = "Chance for a critical hit", Icon = "critical chance icon", IconColor = Color.yellow } },
-        { Stat.CriticalDamage, new StatUIInfoStruct { DisplayName = "Critical Damage", ToolTipDescription = "Percentage increase of damage when a critical hit occurs", Icon = "critical damage icon", IconColor = Color.yellow } },
-        { Stat.LifeSteal, new StatUIInfoStruct { DisplayName = "Life Steal", ToolTipDescription = "Amount of health you gain when an enemy is hit", Icon = "life steal icon", IconColor = Color.red } },
+        { Stat.Range, new StatUIInfoStruct { DisplayName = "Range", ToolTipDescription = "Tracking range for firing", Icon = Resources.Load<Sprite>("Assets/UI/icons/range icon.png"), IconColor = Color.blue } },
+        { Stat.Damage, new StatUIInfoStruct { DisplayName = "Damage", ToolTipDescription = "Damage inflicted on contact", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.red } },
+        { Stat.ProjectileSpeed, new StatUIInfoStruct { DisplayName = "Bullet Speed", ToolTipDescription = "Traveling speed of bullets", Icon = Resources.Load<Sprite>("Assets/UI/icons/range icon.png"), IconColor = Color.blue } },
+        { Stat.ProjectileSize, new StatUIInfoStruct { DisplayName = "Size", ToolTipDescription = "Bullet size", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.blue } },
+        { Stat.FireRate, new StatUIInfoStruct { DisplayName = "Fire Rate", ToolTipDescription = "Frequency of firing", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.yellow } },
+        { Stat.Penetration, new StatUIInfoStruct { DisplayName = "Penetration", ToolTipDescription = "Amount of enemies that can be passed through before the bullet is destroyed", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.yellow } },
+        { Stat.PeriodicDamage, new StatUIInfoStruct { DisplayName = "Periodic Damage", ToolTipDescription = "Damage inflicted on each damage tick", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.green } },
+        { Stat.PeriodicInterval, new StatUIInfoStruct { DisplayName = "Periodic Damage Interval", ToolTipDescription = "Time between each tick of periodic damage", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.green } },
+        { Stat.PeriodicCount, new StatUIInfoStruct { DisplayName = "Periodic Damage Duration", ToolTipDescription = "Amount of damage ticks before the periodic damage wears off", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.green } },
+        { Stat.SplashDamage, new StatUIInfoStruct { DisplayName = "Splash Damage", ToolTipDescription = "Damage inflicted to nearby ememies on contact", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.magenta } },
+        { Stat.SplashRadius, new StatUIInfoStruct { DisplayName = "Splash Radius", ToolTipDescription = "Range of effect of the splash damage", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.magenta } },
+        { Stat.CriticalChance, new StatUIInfoStruct { DisplayName = "Critical Chance", ToolTipDescription = "Chance for a critical hit", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.yellow } },
+        { Stat.CriticalDamage, new StatUIInfoStruct { DisplayName = "Critical Damage", ToolTipDescription = "Percentage increase of damage when a critical hit occurs", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.yellow } },
+        { Stat.LifeSteal, new StatUIInfoStruct { DisplayName = "Life Steal", ToolTipDescription = "Amount of health you gain when an enemy is hit", Icon = Resources.Load<Sprite>("Assets/UI/icons/placeholder icon.png"), IconColor = Color.red } },
     };
 }
 
@@ -76,7 +76,7 @@ public struct StatUIInfoStruct
 {
     public String DisplayName;
     public String ToolTipDescription;
-    public String Icon;
+    public Sprite Icon;
     public Color IconColor;
 }
 

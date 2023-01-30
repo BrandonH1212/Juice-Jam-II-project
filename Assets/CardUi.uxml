@@ -1,8 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <Style src="project://database/Assets/game%20style.uss?fileID=7433441132597879392&amp;guid=6ec5d9dedb517fe4fbc38ec06d450e33&amp;type=3#game style" />
-    <ui:Label text="Label" display-tooltip-when-elided="true" class="TitleText">
-        <ui:IMGUIContainer />
-    </ui:Label>
-    <ui:VisualElement style="overflow: visible; height: 299px; align-items: center;" />
-    <ui:VisualElement />
-</ui:UXML>
