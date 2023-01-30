@@ -10,6 +10,7 @@ public class ProjectileHitbox : MonoBehaviour
 {
     Collider2D _collider2d;
     public List<StatValuePair> StatsApplied = new();
+    public bool DestroyOnHit = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +23,10 @@ public class ProjectileHitbox : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && DestroyOnHit) Destroy(gameObject);
     }
 }

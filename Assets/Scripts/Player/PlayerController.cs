@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     // public float TimeToShoot = 1;
 
     public float Health { get; private set; } = 100;
-    public float MovementSpeed { get; private set; } = 10;
+    public float MovementSpeed { get; private set; } = 50;
     public float Shield { get; private set; }
     public float ShieldRegenerationSpeed { get; private set; }
     public float DamageReduction { get; private set; }

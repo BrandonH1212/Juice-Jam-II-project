@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9205841076955540448
+--- !u!1 &696506881825720285
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2711551739078201753}
-  - component: {fileID: 8924279987344878071}
-  - component: {fileID: 5193801282827273911}
-  - component: {fileID: 6852443606210460785}
+  - component: {fileID: 6037804338937429412}
+  - component: {fileID: 987031190192358858}
+  - component: {fileID: 4503560326147959434}
+  - component: {fileID: 2986748405375963212}
+  - component: {fileID: 7598761358527187374}
   m_Layer: 0
-  m_Name: OrbitShot
+  m_Name: CircularShot
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2711551739078201753
+--- !u!4 &6037804338937429412
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205841076955540448}
+  m_GameObject: {fileID: 696506881825720285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.6060047, y: -9.213486, z: 0}
+  m_LocalPosition: {x: -95.30929, y: 7.81566, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8924279987344878071
+--- !u!114 &987031190192358858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205841076955540448}
+  m_GameObject: {fileID: 696506881825720285}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fe5881d19372cb459aa39b56d32d9f3, type: 3}
@@ -48,31 +49,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToDestruct: 3
   RemainingTime: 0
---- !u!114 &5193801282827273911
+--- !u!114 &4503560326147959434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205841076955540448}
+  m_GameObject: {fileID: 696506881825720285}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bedfcc1c89dba94eb037a3a2f727bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StatsApplied: []
---- !u!114 &6852443606210460785
+--- !u!114 &2986748405375963212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9205841076955540448}
+  m_GameObject: {fileID: 696506881825720285}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3d11e45f9be3b044b58c9f86307a2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToSpawn: {fileID: 1646142287318459893, guid: b4ab2ecca25f66349b7bcdbf57fe9002, type: 3}
+  ObjectToSpawn: {fileID: 79827349592977929, guid: 35fadf68725bdb14199758291d826d7d, type: 3}
   SpawnAsChildren: 1
-  Interval: 8
+  Interval: 18
+--- !u!114 &7598761358527187374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696506881825720285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4fbc20d8455414aa25e19f32a3c6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

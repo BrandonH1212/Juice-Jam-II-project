@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16437974b82a9dc4e869b5e2260f47a5, type: 3}
-  m_Name: OrbitCard
+  m_Name: CircularCard
   m_EditorClassIdentifier: 
   Rarity: 0
   Info:
-    cardName: AdvCard
-    cardDescription: 
+    cardName: Circular Card
+    cardDescription: This is the most basic form of card.
     cardRarity: 0
     cardIcon: {fileID: 0}
   BaseValue:
@@ -24,5 +24,5 @@ MonoBehaviour:
   - StatToAffect: 1
     Value: 10
   Modifiers: []
-  ProjectilePrefab: {fileID: 9205841076955540448, guid: dcac3425a3f0afb49a04a88b160a8653, type: 3}
+  ProjectilePrefab: {fileID: 696506881825720285, guid: 6d4014a801cc47247a93754bd4f3e351, type: 3}
   BehaviourName: ShootRegularly

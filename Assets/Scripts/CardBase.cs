@@ -84,7 +84,9 @@ public struct StatUIInfoStruct
 public enum EffectOperator 
 {
     Summation,
-    Multiplication
+    Multiplication,
+    Min,
+    Max
 }
 
 [System.Serializable]
@@ -137,6 +139,8 @@ public sealed class CardBase : ScriptableObject
                 Func<float, EffectOperator, float, float> applyEffect = (originalValue, effectOperator, val) => 
                 {
                     if (effectOperator == EffectOperator.Summation) return originalValue + val;
+                    else if (effectOperator == EffectOperator.Min) return Math.Min(originalValue, val);
+                    else if (effectOperator == EffectOperator.Max) return Math.Max(originalValue, val);
                     else return originalValue * val;
                 };
 
