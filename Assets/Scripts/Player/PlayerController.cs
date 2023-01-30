@@ -1,121 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
-
-//[Serializable]
-//public class ObservedList<T> : IList<T>
-//{
-//    public delegate void ChangedDelegate(int index, T oldValue, T newValue);
-
-//    [SerializeField] private List<T> _list = new List<T>();
-
-//    // NOTE: I changed the signature to provide a bit more information
-//    // now it returns index, oldValue, newValue
-//    public event ChangedDelegate Changed;
-
-//    public event Action Updated;
-
-//    public IEnumerator<T> GetEnumerator()
-//    {
-//        return _list.GetEnumerator();
-//    }
-
-//    IEnumerator IEnumerable.GetEnumerator()
-//    {
-//        return GetEnumerator();
-//    }
-
-//    public void Add(T item)
-//    {
-//        _list.Add(item);
-//        Updated?.Invoke();
-//    }
-
-//    public void Clear()
-//    {
-//        _list.Clear();
-//        Updated?.Invoke();
-//    }
-
-//    public bool Contains(T item)
-//    {
-//        return _list.Contains(item);
-//    }
-
-//    public void CopyTo(T[] array, int arrayIndex)
-//    {
-//        _list.CopyTo(array, arrayIndex);
-//    }
-
-//    public bool Remove(T item)
-//    {
-//        var output = _list.Remove(item);
-//        Updated?.Invoke();
-
-//        return output;
-//    }
-
-//    public int Count => _list.Count;
-//    public bool IsReadOnly => false;
-
-//    public int IndexOf(T item)
-//    {
-//        return _list.IndexOf(item);
-//    }
-
-//    public void Insert(int index, T item)
-//    {
-//        _list.Insert(index, item);
-//        Updated?.Invoke();
-//    }
-
-//    public void RemoveAt(int index)
-//    {
-//        _list.RemoveAt(index);
-//        Updated?.Invoke();
-//    }
-
-//    public void AddRange(IEnumerable<T> collection)
-//    {
-//        _list.AddRange(collection);
-//        Updated?.Invoke();
-//    }
-
-//    public void RemoveAll(Predicate<T> predicate)
-//    {
-//        _list.RemoveAll(predicate);
-//        Updated?.Invoke();
-//    }
-
-//    public void InsertRange(int index, IEnumerable<T> collection)
-//    {
-//        _list.InsertRange(index, collection);
-//        Updated?.Invoke();
-//    }
-
-//    public void RemoveRange(int index, int count)
-//    {
-//        _list.RemoveRange(index, count);
-//        Updated?.Invoke();
-//    }
-
-//    public T this[int index]
-//    {
-//        get { return _list[index]; }
-//        set
-//        {
-//            var oldValue = _list[index];
-//            _list[index] = value;
-//            Changed?.Invoke(index, oldValue, value);
-//            // I would also call the generic one here
-//            Updated?.Invoke();
-//        }
-//    }
-//}
+using static UnityEngine.Rendering.VolumeComponent;
 
 public class PlayerController : MonoBehaviour
 {
@@ -127,6 +18,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody2D = null;
     private SpriteRenderer _spriteRenderer = null;
     private Animator _animator = null;
+
+    // has to do this since unity doesn't suuport ObserableCollection in inspector natively. I am sorry.
+    private List<CardBaseInstance> _lastFrameEquipedCards = new();
     
 
     // DEV:
@@ -143,51 +37,34 @@ public class PlayerController : MonoBehaviour
     public UnityEvent OnDamage;
     public UnityEvent OnKilled;
     public UnityEvent OnShieldBroken;
-    public UnityEvent<List<Modifier>> OnEffectsChanged = new();
+    public UnityEvent OnCardsChanged = new();
 
     public List<CardBase> InitialCards;
 
-    public List<Tuple<CardBase, Component>> EquipedCards = new();
+    public List<CardBaseInstance> EquipedCards = new();
 
-    //public List<Modifier> GetModifierOnCards() 
-    //{
-    //    // return EquipedCards[0].Item1.ModifiersOnCards;
-    //}
-
-    public void EquipCard(CardBase c) 
+    public CardBaseInstance EquipCard(CardBase c)
     {
-        //CardBehaviour newlyAddedInstance = this.gameObject.AddComponent(CardBehaviourAttribute.GetTypeWithBehaviourName(c.BehaviourTypeName)) as CardBehaviour;
-        //newlyAddedInstance.CurrentCard = c;
-        //EquipedCards.Add(new Tuple<CardBase, Component>(c, newlyAddedInstance));
-        //OnEffectsChanged.Invoke(c.ModifiersOnCards);
+        CardBaseInstance instanceCreated = new(c, null, this);
+        if (c.BehaviourName != "") 
+        {
+            CardBehaviour newlyAddedInstance = this.gameObject.AddComponent(CardBehaviourAttribute.GetTypeWithBehaviourName(c.BehaviourName)) as CardBehaviour;
+            newlyAddedInstance.CurrentCard = instanceCreated;
+            instanceCreated.ComponentOnPlayerController = newlyAddedInstance;
+        }
+        //BeforeCardsChanged.Invoke();
+        EquipedCards.Add(instanceCreated);
+        //AfterCardsChanged.Invoke();
+        return instanceCreated;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
-        //EquipedCards.Changed += (index, oldVal, newVal) => 
-        //{
-        //    // CardBase cardAdded = list[arg.index];
-        //    Debug.Log("CardBase added");
-        //    CardBehaviourAttribute.GetBehaviourType(newVal.BehaviourName);
-        //};
-
-        // foreach (CardBase c in InitialCards) EquipCard(c);
-
-        int currentIndex = 0;
-        foreach (CardBase card in InitialCards) 
-        {
-            Debug.Log($"Card {card.Info.cardName}: Final Damage - {card.GetFinalValue(InitialCards, currentIndex)[Stat.Damage]}");
-            currentIndex++;
-        }
-
-        
-
-
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        InitialCards.ForEach(cardBase => EquipCard(cardBase));
     }
 
     // Update is called once per frame
@@ -195,13 +72,10 @@ public class PlayerController : MonoBehaviour
     {
         InferMovementDirection();
 
-        //TimeToShoot -= Time.deltaTime;
-        //if (TimeToShoot < 0) 
-        //{
-        //    var newProjectileObject = Instantiate(BasicShot);
-        //    newProjectileObject.transform.position = transform.position;
-        //    TimeToShoot = 0.2f;
-        //}
+        #region Check for list change
+        if (!EquipedCards.SequenceEqual(_lastFrameEquipedCards)) OnCardsChanged.Invoke();
+        _lastFrameEquipedCards = new(EquipedCards);
+        #endregion
     }
 
     void InferMovementDirection() 
@@ -243,5 +117,19 @@ public class PlayerController : MonoBehaviour
             if (Health - damage <= 0) OnKilled.Invoke();
             Health = Math.Max(0, Health - damage);
         }
+    }
+
+    public bool TryGetEffectiveStatsOnCard(CardBaseInstance cardInstance, out Dictionary<Stat, float> effectiveStats) 
+    {
+        int index = -1;
+        for (int i = 0; i < EquipedCards.Count; i++)
+        {
+            var currentCard = EquipedCards[i];
+            if (currentCard.MemoryAddress == cardInstance.MemoryAddress) index = i;
+        }
+        if (index != -1) effectiveStats = cardInstance.CardBase.GetFinalValue(EquipedCards.ToList(), index);
+        else effectiveStats = new();
+        return index != -1;
+
     }
 }

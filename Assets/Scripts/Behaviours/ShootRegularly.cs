@@ -7,24 +7,54 @@ using UnityEngine;
 
 public abstract class CardBehaviour : MonoBehaviour
 {
-    public CardBase CurrentCard;
-    public List<Modifier> ModifierOnCards = new();
+    public CardBaseInstance CurrentCard;
     public PlayerController PlayerController;
+    protected Dictionary<Stat, float> _effectiveStatThisCard = new();
 
     public void Subscribe() 
     {
         PlayerController = GetComponent<PlayerController>();
-        // ModifierOnCards = PlayerController.GetModifierOnCards();
-        PlayerController.OnEffectsChanged.AddListener(modifers => ModifierOnCards = modifers);
+        PlayerController.OnCardsChanged.AddListener(UpdateEffectiveStats);
+        UpdateEffectiveStats();
     }
 
-    public void ShootProjectile() 
+    /// <summary>
+    /// Return whether the current card is removed. If removed, destroy this script.
+    /// </summary>
+    /// <returns></returns>
+    private bool CheckForUnsubscribion() 
     {
-        // Instantiate(CurrentCard.Projectile);
+        if (!PlayerController.EquipedCards.Any(cardBaseInstance => cardBaseInstance.MemoryAddress == CurrentCard.MemoryAddress))
+        {
+            PlayerController.GetComponents<CardBehaviour>().ToList().ForEach(component =>
+            {
+                if (component.CurrentCard.MemoryAddress == CurrentCard.MemoryAddress) DestroyImmediate(component);
+            });
+            return true;
+        }
+
+        return false;
+    }
+
+    public void UpdateEffectiveStats() 
+    {
+        if (!CheckForUnsubscribion()) 
+        {
+            if (PlayerController.TryGetEffectiveStatsOnCard(CurrentCard, out Dictionary<Stat, float> effectiveStats)) 
+            {
+                _effectiveStatThisCard = effectiveStats;
+            }
+        }
+    }
+
+    public GameObject ShootProjectile() 
+    {
+        if (CurrentCard.CardBase.ProjectilePrefab != null) return Instantiate(CurrentCard.CardBase.ProjectilePrefab, transform.position, new Quaternion());
+        else return null;
     }
 }
 
-[CardBehaviourAttribute("ShootRegularly")]
+[CardBehaviour("ShootRegularly")]
 public class ShootRegularly : CardBehaviour
 {  
     public float TimeRemaining = 1;
@@ -37,11 +67,16 @@ public class ShootRegularly : CardBehaviour
 
     public void FixedUpdate()
     {
-        
+        TimeRemaining -= Time.deltaTime;
+        if (TimeRemaining <= 0 && _effectiveStatThisCard[Stat.FireRate] > 0)
+        {
+            ShootProjectile();
+            TimeRemaining = 1 / _effectiveStatThisCard[Stat.FireRate];
+        }
     }
 }
 
-[CardBehaviourAttribute("ShootOnce")]
+[CardBehaviour("ShootOnce")]
 public class ShootOnce : CardBehaviour
 {
     public bool Shot = false;

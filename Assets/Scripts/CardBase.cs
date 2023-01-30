@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -110,16 +111,18 @@ public sealed class CardBase : ScriptableObject
     public CardInfo Info;
     public List<StatFloatPair> BaseValue = new();
     public List<Modifier> Modifiers = new();
+    public GameObject ProjectilePrefab;
+    public string BehaviourName = "";
 
-    public Dictionary<Stat, float> GetFinalValue(List<CardBase> allCards, int currentCardIndex) 
+    public Dictionary<Stat, float> GetFinalValue(List<CardBaseInstance> allCards, int currentCardIndex) 
     {
         List<Dictionary<Stat, float>> allCardsStat = new();
 
         // Initialize all cards stats with THEIR base values
-        foreach (CardBase card in allCards) 
+        foreach (CardBaseInstance card in allCards) 
         {
             Dictionary<Stat, float> currentCardStat = new();
-            foreach (StatFloatPair pair in card.BaseValue) currentCardStat.Add(pair.StatToAffect, pair.Value);
+            foreach (StatFloatPair pair in card.CardBase.BaseValue) currentCardStat.Add(pair.StatToAffect, pair.Value);
             foreach (Stat stat in Enum.GetValues(typeof(Stat))) { if (!currentCardStat.ContainsKey(stat)) currentCardStat.Add(stat, 0); }
             allCardsStat.Add(currentCardStat);
         }
@@ -127,7 +130,7 @@ public sealed class CardBase : ScriptableObject
         // Populate Values and Modifiers from LEFT TO RIGHT
         for (int i = 0; i < allCards.Count; i++)
         {
-            CardBase currentCard = allCards[i];
+            CardBase currentCard = allCards[i].CardBase;
 
             foreach (Modifier mod in currentCard.Modifiers) 
             {
@@ -209,5 +212,40 @@ public sealed class CardBase : ScriptableObject
         }
 
         return allCardsStat[currentCardIndex];
+    }
+}
+
+/// <summary>
+/// This class represent an instance of the CardBase data class.
+/// This class should not be created other than player controller script normally.
+/// </summary>
+[System.Serializable]
+public sealed class CardBaseInstance 
+{
+    [SerializeField]
+    public CardBase CardBase;
+    public Component ComponentOnPlayerController;
+    public PlayerController PlayerController;
+    public string MemoryAddress;
+
+    public CardBaseInstance(CardBase cardBase, Component componentOnController, PlayerController controller) 
+    {
+        CardBase = cardBase;
+        ComponentOnPlayerController = componentOnController;
+        PlayerController = controller;
+        MemoryAddress = Get(this);
+    }
+    public static string Get(object a)
+    {
+        GCHandle handle = GCHandle.Alloc(a, GCHandleType.Pinned);
+        try
+        {
+            IntPtr pointer = GCHandle.ToIntPtr(handle);
+            return "0x" + pointer.ToString("X");
+        }
+        finally
+        {
+            handle.Free();
+        }
     }
 }
