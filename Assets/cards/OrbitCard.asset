@@ -24,5 +24,5 @@ MonoBehaviour:
   - StatToAffect: 1
     Value: 10
   Modifiers: []
-  ProjectilePrefab: {fileID: 1646142287318459893, guid: b4ab2ecca25f66349b7bcdbf57fe9002, type: 3}
-  BehaviourName: ShootRegularly
+  ProjectilePrefab: {fileID: 9205841076955540448, guid: dcac3425a3f0afb49a04a88b160a8653, type: 3}
+  BehaviourName: ShootOnce
