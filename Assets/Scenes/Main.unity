@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8437652902858751249, guid: 0c12b1f88b9f89a49a7070b0f50010f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.5735332
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8437652902858751249, guid: 0c12b1f88b9f89a49a7070b0f50010f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1283,9 +1283,25 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: InitialCards.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: InitialCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ee239cb034d2c14f877738681ff191f, type: 2}
+    - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: InitialCards.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: ec05dfd429cfdb54fba8fbbfb7a8ad75, type: 2}
     - target: {fileID: 320728085953499815, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979760928629373836, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: startingLevel
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8814257849089054104, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: m_Size.x
@@ -1298,6 +1314,10 @@ PrefabInstance:
     - target: {fileID: 8814257849089054104, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: m_Offset.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814257849089054104, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}

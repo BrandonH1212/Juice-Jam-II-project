@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,7 +6,7 @@ public struct XpInfo
 {
     public int currentLevel;
     public int currentXP;
-    public int[] xpThresholds;
+    public int XpRequired;
 }
 
 
@@ -14,7 +15,7 @@ public class PlayerXP : MonoBehaviour
     private static PlayerXP instance;
     public static PlayerXP Instance { get { return instance; } }
 
-    [SerializeField] private int[] xpThresholds = new int[] { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 };
+    private int _xpRequired = 100;
     [SerializeField] private int startingLevel = 1;
     private int currentLevel;
     private int currentXP;
@@ -39,7 +40,7 @@ public class PlayerXP : MonoBehaviour
 
     public XpInfo GetXPInfo()
     {
-        return new XpInfo() { currentLevel = currentLevel, currentXP = currentXP, xpThresholds = xpThresholds };
+        return new XpInfo() { currentLevel = currentLevel, currentXP = currentXP, XpRequired = _xpRequired };
     }
 
 
@@ -47,11 +48,13 @@ public class PlayerXP : MonoBehaviour
     public void AddXP(int amount)
     {
         currentXP += amount;
-        print(currentXP);
-        while (currentLevel < xpThresholds.Length && currentXP >= xpThresholds[currentLevel])
+        while (currentXP >= _xpRequired)
         {
             currentLevel++;
             onLevelUp.Invoke();
+            currentXP = 0;
+            _xpRequired += 25;
+
         }
         onXPChanged.Invoke();
         UIXpBar.Instance.UpdateBar(GetXPInfo());
