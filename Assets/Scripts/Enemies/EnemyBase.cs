@@ -9,7 +9,7 @@ public class EnemyBase : MonoBehaviour
     public GameObject OnDeathEffect;
     public GameObject OnDamagedEffect;
     public GameObject OnSpawnEffect;
-
+    private bool IsDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,10 +40,14 @@ public class EnemyBase : MonoBehaviour
 
     void OnDeath() 
     {
-        if (OnDeathEffect != null) Instantiate(OnDeathEffect, transform.position, new Quaternion());
-        // drop xp
-        GameObject xpObj = Instantiate(Resources.Load("XpOrb"), transform.position, new Quaternion()) as GameObject;
-        xpObj.GetComponent<XPPickup>().xpAmount = XpDrop;
-        Destroy(gameObject);
+        if (!IsDead)
+        {
+            if (OnDeathEffect != null) Instantiate(OnDeathEffect, transform.position, new Quaternion());
+            // drop xp
+            GameObject xpObj = Instantiate(Resources.Load("XpOrb"), transform.position, new Quaternion()) as GameObject;
+            xpObj.GetComponent<XPPickup>().xpAmount = XpDrop;
+            IsDead = true;
+            Destroy(gameObject);
+        }
     }
 }

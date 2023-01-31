@@ -7,7 +7,7 @@ public class XPPickup : MonoBehaviour
     [SerializeField]
     public float followDuration = 1.5f;
 
-
+    private bool PickedUp = false;
     private Transform playerTransform;
     private float timeElapsed = 0f;
 
@@ -19,6 +19,11 @@ public class XPPickup : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+    }
+
     private void FixedUpdate()
     {
         if (playerTransform == null)
@@ -28,14 +33,13 @@ public class XPPickup : MonoBehaviour
 
         timeElapsed += Time.deltaTime;
         Vector3 new_position = Vector3.Lerp(transform.position, playerTransform.position, timeElapsed / followDuration);
-        transform.position = new Vector3(new_position.x, new_position.y, 0);
+        transform.position = new Vector3(new_position.x, new_position.y, -1);
 
-        if (timeElapsed >= followDuration) 
+        if (timeElapsed >= followDuration && !PickedUp)
         {
             PlayerXP.Instance.AddXP(xpAmount);
-            print("XP: " + xpAmount);
             Destroy(gameObject);
-            
+            PickedUp = true;
         }
     }
 }
