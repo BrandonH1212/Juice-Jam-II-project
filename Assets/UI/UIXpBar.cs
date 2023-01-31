@@ -23,10 +23,6 @@ public class UIXpBar : MonoBehaviour
             return instance;
         }
     }
-
-    public UnityEvent onXPAdded;
-    public float currentXP;
-    private float maxXP = 1000f;
     private Image _bar;
     
 
@@ -46,23 +42,13 @@ public class UIXpBar : MonoBehaviour
     {
         _bar = GetComponentsInChildren<Image>()[1];
         _bar.rectTransform.localScale = new Vector3(0f, 0.8f, 1);
-        //AddXP(100);
+        
     }
 
-    public void AddXP(float xp)
+    public void UpdateBar(XpInfo _xpInfo)
     {
-        currentXP += xp;
-        currentXP = Mathf.Clamp(currentXP, 0f, maxXP);
-        _bar.rectTransform.localScale = new Vector3(currentXP / maxXP, 0.8f, 1);
-        print(currentXP);
-        onXPAdded.Invoke();
-        if (currentXP == maxXP)
-        {
-            currentXP = 0;
-        }
+        _bar.rectTransform.localScale = new Vector3((float)_xpInfo.currentXP / (float)_xpInfo.xpThresholds[_xpInfo.currentLevel], 0.8f, 1);
     }
-
-
 
 
 }

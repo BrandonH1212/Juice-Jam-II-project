@@ -4,6 +4,7 @@ public class XPPickup : MonoBehaviour
 {
     [SerializeField]
     public int xpAmount = 10;
+    
     [SerializeField]
     public float followDuration = 1.5f;
 
