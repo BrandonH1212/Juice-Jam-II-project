@@ -28,7 +28,6 @@ public class PlayerXP : MonoBehaviour
 
         currentLevel = startingLevel;
     }
-
     public void AddXP(int amount)
     {
         currentXP += amount;
@@ -38,5 +37,6 @@ public class PlayerXP : MonoBehaviour
             onLevelUp.Invoke();
         }
         onXPChanged.Invoke();
+        UIXpBar.Instance.AddXP(amount);
     }
 }

@@ -54,6 +54,7 @@ public class UIXpBar : MonoBehaviour
         currentXP += xp;
         currentXP = Mathf.Clamp(currentXP, 0f, maxXP);
         _bar.rectTransform.localScale = new Vector3(currentXP / maxXP, 0.8f, 1);
+        print(currentXP);
         onXPAdded.Invoke();
         if (currentXP == maxXP)
         {
