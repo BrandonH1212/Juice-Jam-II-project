@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     public float Health = 100;
+    public int XpDrop = 1;
     public GameObject OnDeathEffect;
     public GameObject OnDamagedEffect;
     public GameObject OnSpawnEffect;
@@ -40,6 +41,9 @@ public class EnemyBase : MonoBehaviour
     void OnDeath() 
     {
         if (OnDeathEffect != null) Instantiate(OnDeathEffect, transform.position, new Quaternion());
+        // drop xp
+        GameObject xpObj = Instantiate(Resources.Load("XpOrb"), transform.position, new Quaternion()) as GameObject;
+        xpObj.GetComponent<XPPickup>().xpAmount = XpDrop;
         Destroy(gameObject);
     }
 }

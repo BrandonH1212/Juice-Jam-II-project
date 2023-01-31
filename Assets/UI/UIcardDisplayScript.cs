@@ -11,6 +11,7 @@ public class UIcardDisplayScript : MonoBehaviour
     [SerializeField] private bool _fromInventory = false;
     [SerializeField] private int _cardIndex = 0;
     [SerializeField] private List<GameObject> StatDisplaySlots;
+    [SerializeField] private List<GameObject> ModifierDisplaySlots;
     [SerializeField] private TMP_Text _title;
     [SerializeField] private TMP_Text _description;
 
@@ -21,20 +22,19 @@ public class UIcardDisplayScript : MonoBehaviour
 
     private void Start()
     {
-        Invoke("SetUp", 1);
+        Invoke("SetUp", 0.1f);
     }
 
-    private void HideStatDisplays()
+    private void HideDisplays()
     {
-        foreach (GameObject slot in StatDisplaySlots)
-        {
-            slot.SetActive(false);
-        }
+        foreach (GameObject slot in StatDisplaySlots) slot.SetActive(false);
+        foreach (GameObject slot in ModifierDisplaySlots) slot.SetActive(false);
+
     }
 
     private void ShowStats()
     {
-        HideStatDisplays();
+        HideDisplays();
         _title.text = _card.Info.cardName;
         _description.text = _card.Info.cardDescription;
 
@@ -47,22 +47,37 @@ public class UIcardDisplayScript : MonoBehaviour
 
             if (displayScript != null)
             {
+                slot.SetActive(true);
                 Sprite sprite = StatInfo.Data[_card.BaseValue[index].StatToAffect].Icon;
-                print(_card.BaseValue[index].StatToAffect.ToString());
-                displayScript.SetStatDisplay(sprite, _card.BaseValue[index].Value);
+                //print(_card.BaseValue[index].StatToAffect.ToString());
+                displayScript.SetStatDisplay(sprite, Mathf.Round(_card.BaseValue[index].Value * 100f) / 100f, _card.BaseValue[index].StatToAffect); // Round to 2 decimal places WTF c#
 
             }
-
-
             index++;
+        }
 
+        index = 0;
 
+        foreach (GameObject slot in ModifierDisplaySlots)
+        {
+            if (index >= _card.Modifiers.Count) break;
+
+            UIModifierDisplayScript ModifierDisplayScript = slot.GetComponent<UIModifierDisplayScript>();
+
+            if (ModifierDisplayScript != null)
+            {
+                slot.SetActive(true);
+                Sprite sprite = StatInfo.Data[_card.BaseValue[index].StatToAffect].Icon;
+                //print(_card.BaseValue[index].StatToAffect.ToString());
+                ModifierDisplayScript.SetModifierDisplay(_card.Modifiers[index]);
+
+            }
+            index++;
         }
     }
 
 
-
-    private void SetUp()
+            private void SetUp()
     {
 
         _playerControllerObj = GameObject.Find("Player");
@@ -74,7 +89,7 @@ public class UIcardDisplayScript : MonoBehaviour
         }
         else
         {
-            _card = _ControlerScript.InitialCards[0];
+            _card = _ControlerScript.InitialCards[_cardIndex];
             print(_card.Info.cardName);
             ShowStats();
         }

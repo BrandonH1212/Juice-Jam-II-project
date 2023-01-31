@@ -5,14 +5,27 @@ using UnityEngine.UI;
 using TMPro;
 
 
+
 public class UIStatDisplayScript : MonoBehaviour
 {
-    [SerializeField] private Image Icon;
-    [SerializeField] private TMP_Text Value;
+    private Image Icon;
+    private TMP_Text ValText;
+    private ToolipMouseOver _mouseOver;
 
-    public void SetStatDisplay(Sprite icon, float value)
+
+    void Start()
+    {
+        Icon = GetComponentsInChildren<Image>()[1];
+        ValText = GetComponentInChildren<TMP_Text>();
+        _mouseOver = GetComponent<ToolipMouseOver>();
+
+    }
+
+    public void SetStatDisplay(Sprite icon, float value, Stat Stat)
     {
         Icon.sprite = icon;
-        Value.text = value.ToString();
+        ValText.text = value.ToString();
+        _mouseOver.title = StatInfo.Data[Stat].DisplayName;
+        _mouseOver.description = StatInfo.Data[Stat].ToolTipDescription;
     }
 }
