@@ -1,31 +1,28 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class DragAndDropItem : MonoBehaviour, IDragHandler, IEndDragHandler
+public class DragAndDropItem : MonoBehaviour, IDragHandler, IDropHandler
 {
-    private Transform originalParent;
+    public Vector3 originalPosition;
+
 
     public void Start()
     {
-        originalParent = transform.parent;
+        originalPosition = transform.position;
     }
 
 
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
+
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnDrop(PointerEventData eventData)
     {
-        transform.SetParent(originalParent);
-        transform.position = originalParent.position;
+        transform.position = originalPosition;
     }
-
-    private void OnMouseDown()
-    {
-        originalParent = transform.parent;
-        transform.SetParent(transform.parent.parent);
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
-    }
+    
 }

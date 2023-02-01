@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -53,7 +54,7 @@ public class PlayerXP : MonoBehaviour
             currentLevel++;
             onLevelUp.Invoke();
             currentXP = 0;
-            _xpRequired += 25;
+            _xpRequired = (int)(100 * math.pow(1.1, currentLevel));
 
         }
         onXPChanged.Invoke();

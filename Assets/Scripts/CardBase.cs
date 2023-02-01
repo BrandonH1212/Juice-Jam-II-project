@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public enum CardRarity
@@ -231,6 +232,7 @@ public sealed class CardBaseInstance
     public Component ComponentOnPlayerController;
     public PlayerController PlayerController;
     public string MemoryAddress;
+    public Dictionary<Stat, float> _Stats = new Dictionary<Stat, float>();
 
     public CardBaseInstance(CardBase cardBase, Component componentOnController, PlayerController controller) 
     {

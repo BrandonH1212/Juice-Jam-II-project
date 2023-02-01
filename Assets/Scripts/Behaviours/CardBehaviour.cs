@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 public abstract class CardBehaviour : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public abstract class CardBehaviour : MonoBehaviour
 
         return false;
     }
+
+    public Dictionary<Stat, float> GetEffectiveStats() => _effectiveStatThisCard;
+
 
     public void UpdateEffectiveStats()
     {

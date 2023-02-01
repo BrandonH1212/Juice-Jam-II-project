@@ -42,7 +42,7 @@ public class UIModifierDisplayScript : MonoBehaviour
 {
     private Image AffectedIcon;
     private Image OperatorIcon;
-    private ToolipMouseOver _toolTipMouseOver;
+    //private TooltipMouseOver _toolTipMouseOver;
     private UIStatDisplayScript _statDisplay;
 
 
@@ -51,7 +51,7 @@ public class UIModifierDisplayScript : MonoBehaviour
         AffectedIcon = GetComponentsInChildren<Image>()[1];
         OperatorIcon = GetComponentsInChildren<Image>()[2];
         _statDisplay = GetComponentsInChildren<UIStatDisplayScript>()[0];
-        _toolTipMouseOver = GetComponentsInChildren<ToolipMouseOver>()[0];
+        //_toolTipMouseOver = GetComponentsInChildren<TooltipMouseOver>()[0];
 
     }
 
@@ -61,8 +61,8 @@ public class UIModifierDisplayScript : MonoBehaviour
         OperatorIcon.sprite = OperatorIcons.Data[mod.Operator];
         //print(mod.StatToAffect.ToString());
         _statDisplay.SetStatDisplay(StatInfo.Data[mod.StatToAffect].Icon, mod.Value, mod.StatToAffect);
-        _toolTipMouseOver.title = mod.Targets.ToString();
-        _toolTipMouseOver.description = ModiferTargetIcons.descriptions[mod.Targets];
+        //_toolTipMouseOver.title = mod.Targets.ToString();
+        //_toolTipMouseOver.description = ModiferTargetIcons.descriptions[mod.Targets];
 
     }
 }

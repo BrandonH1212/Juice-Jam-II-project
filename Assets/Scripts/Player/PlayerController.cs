@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
-using static UnityEngine.Rendering.VolumeComponent;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,20 +41,71 @@ public class PlayerController : MonoBehaviour
     public List<CardBase> InitialCards;
 
     public List<CardBaseInstance> EquipedCards = new();
+    public List<CardBase> InventoryCards = new();
 
-    public CardBaseInstance EquipCard(CardBase c)
+    public CardBaseInstance EquipCard(CardBase c, int index = -1)
     {
         CardBaseInstance instanceCreated = new(c, null, this);
-        if (c.BehaviourName != "") 
+        if (c.BehaviourName != "")
         {
             CardBehaviour newlyAddedInstance = this.gameObject.AddComponent(CardBehaviourAttribute.GetTypeWithBehaviourName(c.BehaviourName)) as CardBehaviour;
             newlyAddedInstance.CurrentCard = instanceCreated;
             instanceCreated.ComponentOnPlayerController = newlyAddedInstance;
         }
-        //BeforeCardsChanged.Invoke();
-        EquipedCards.Add(instanceCreated);
-        //AfterCardsChanged.Invoke();
+        if (index == -1)
+        {
+            EquipedCards.Add(instanceCreated);
+        }
+        else
+        {
+            EquipedCards.RemoveAt(index);
+            EquipedCards.Insert(index, instanceCreated);
+        }
+
         return instanceCreated;
+    }
+
+    public void SwapEquippedCardWithInventoryCard(int equippedIndex, int inventoryIndex)
+    {
+        if (equippedIndex < 0 || equippedIndex >= EquipedCards.Count)
+        {
+            Debug.LogError("Invalid Equipped Index");
+            return;
+        }
+        if (inventoryIndex < 0 || inventoryIndex >= InventoryCards.Count)
+        {
+            Debug.LogError("Invalid Inventory Index");
+            return;
+        }
+
+        CardBase equippedCard = EquipedCards[equippedIndex].CardBase;
+        CardBase inventoryCard = InventoryCards[inventoryIndex];
+
+        InventoryCards.RemoveAt(inventoryIndex);
+        InventoryCards.Add(equippedCard);
+        EquipCard(inventoryCard, equippedIndex);
+    }
+
+
+    public void SwapEquippedCards(int index1, int index2)
+    {
+        if (index1 < 0 || index1 >= EquipedCards.Count)
+        {
+            Debug.LogError("Invalid index1");
+            return;
+        }
+        if (index2 < 0 || index2 >= EquipedCards.Count)
+        {
+            Debug.LogError("Invalid index2");
+            return;
+        }
+
+        CardBaseInstance card1 = EquipedCards[index1];
+        CardBaseInstance card2 = EquipedCards[index2];
+
+        EquipCard(card2.CardBase, index1);
+        EquipCard(card1.CardBase, index2);
+
     }
 
     // Start is called before the first frame update
@@ -105,6 +155,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
     public void TakeDamage(float damage) 
     {
         if (Shield > 0)
@@ -127,9 +178,15 @@ public class PlayerController : MonoBehaviour
             var currentCard = EquipedCards[i];
             if (currentCard.MemoryAddress == cardInstance.MemoryAddress) index = i;
         }
-        if (index != -1) effectiveStats = cardInstance.CardBase.GetFinalValue(EquipedCards.ToList(), index);
+        if (index != -1)
+        {
+            effectiveStats = cardInstance.CardBase.GetFinalValue(EquipedCards.ToList(), index);
+            cardInstance._Stats = effectiveStats;
+        }
+        
         else effectiveStats = new();
         return index != -1;
 
     }
+
 }

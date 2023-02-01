@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16437974b82a9dc4e869b5e2260f47a5, type: 3}
-  m_Name: targeted card
+  m_Name: BasicCard2
   m_EditorClassIdentifier: 
   Rarity: 0
   Info:
-    cardName: 'targeted shot card '
+    cardName: Basic Card
     cardDescription: This is the most basic form of card.
     cardRarity: 0
     cardIcon: {fileID: 0}
@@ -23,10 +23,6 @@ MonoBehaviour:
     Value: 1
   - StatToAffect: 1
     Value: 10
-  - StatToAffect: 0
-    Value: 20
-  - StatToAffect: 2
-    Value: 100
   Modifiers: []
-  ProjectilePrefab: {fileID: 696506881825720285, guid: 6d4014a801cc47247a93754bd4f3e351, type: 3}
-  BehaviourName: ShootRegularlyInRange
+  ProjectilePrefab: {fileID: 4613350625003615452, guid: 0545d87d6e21f7540ae488b0bb98465c, type: 3}
+  BehaviourName: ShootRegularly

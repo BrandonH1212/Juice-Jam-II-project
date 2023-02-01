@@ -47,7 +47,7 @@ public class UIXpBar : MonoBehaviour
 
     public void UpdateBar(XpInfo _xpInfo)
     {
-        _bar.rectTransform.localScale = new Vector3((float)_xpInfo.currentXP / (float)_xpInfo.xpThresholds[_xpInfo.currentLevel], 0.8f, 1);
+        _bar.rectTransform.localScale = new Vector3((float)_xpInfo.currentXP / (float)_xpInfo.XpRequired, 0.8f, 1);
     }
 
 

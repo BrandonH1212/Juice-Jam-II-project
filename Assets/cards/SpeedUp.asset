@@ -22,7 +22,7 @@ MonoBehaviour:
   Modifiers:
   - Targets: 0
     StatToAffect: 4
-    Operator: 1
+    Operator: 0
     Value: 10
   ProjectilePrefab: {fileID: 0}
   BehaviourName: 
