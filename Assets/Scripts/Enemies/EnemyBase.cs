@@ -6,8 +6,11 @@ public class EnemyBase : MonoBehaviour
 {
     public float Health = 100;
     public int XpDrop = 1;
+    [SerializeField]
     public GameObject OnDeathEffect;
+    [SerializeField]
     public GameObject OnDamagedEffect;
+    [SerializeField]
     public GameObject OnSpawnEffect;
     private bool IsDead = false;
     // Start is called before the first frame update
@@ -24,18 +27,22 @@ public class EnemyBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("Projectile")) 
         {
             var damageReceived = collision.gameObject.GetComponent<ProjectileHitbox>().StatsApplied.Find(x => x.Stat == Stat.Damage).Value;
-            if (OnDamagedEffect != null) Instantiate(OnDamagedEffect, transform.position, new Quaternion());
+            //if (OnDamagedEffect != null) Instantiate(OnDamagedEffect, transform.position, new Quaternion());
+            
             ApplyDamage(damageReceived);
         }
+
     }
 
     public void ApplyDamage(float damage) 
     {
         Health -= damage;
         if (Health <= 0) OnDeath();
+    
     }
 
     void OnDeath() 

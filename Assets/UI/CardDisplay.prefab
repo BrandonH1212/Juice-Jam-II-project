@@ -1291,6 +1291,7 @@ MonoBehaviour:
   - {fileID: 5326259900723056729}
   _title: {fileID: 2954692656397633069}
   _description: {fileID: 1839635367085903605}
+  _isDragable: 1
   _card:
     CardBase: {fileID: 0}
     ComponentOnPlayerController: {fileID: 0}

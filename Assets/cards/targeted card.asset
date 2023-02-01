@@ -20,9 +20,9 @@ MonoBehaviour:
     cardIcon: {fileID: 0}
   BaseValue:
   - StatToAffect: 4
-    Value: 1
+    Value: 5
   - StatToAffect: 1
-    Value: 10
+    Value: 1
   - StatToAffect: 0
     Value: 20
   - StatToAffect: 2

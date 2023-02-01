@@ -78,7 +78,9 @@ public class PlayerController : MonoBehaviour
     public void EquipInventoryCard(int cardIndexInInventory, int slotToReplace) 
     {
         var newInstance = CreateCardBaseInstance(InventoryCards[cardIndexInInventory]);
+        InventoryCards[cardIndexInInventory] = EquipedCards[slotToReplace].CardBase;
         EquipedCards[slotToReplace] = newInstance;
+
     }
 
     // Start is called before the first frame update

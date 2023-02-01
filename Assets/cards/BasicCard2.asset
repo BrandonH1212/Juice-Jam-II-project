@@ -20,7 +20,7 @@ MonoBehaviour:
     cardIcon: {fileID: 0}
   BaseValue:
   - StatToAffect: 4
-    Value: 1
+    Value: 10
   - StatToAffect: 1
     Value: 10
   Modifiers: []

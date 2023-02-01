@@ -41,7 +41,7 @@ public class ShootRegularlyInRange : CardBehaviour
             if (TargetObjects.Count > 0)
                 ShootProjectile();
             
-            TimeRemaining = 1 / _effectiveStatThisCard[Stat.FireRate];
+            TimeRemaining = (float)ConstantValues.FireRate / _effectiveStatThisCard[Stat.FireRate];
         }
     }
 }

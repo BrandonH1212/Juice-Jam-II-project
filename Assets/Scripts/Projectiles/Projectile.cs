@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 /// <summary>
 /// This class should be at the top of all projectile prefabs.
 /// </summary>
 public class Projectile : MonoBehaviour
 {
+
+    private Rigidbody2D _rigidbody2D;
+
+    private int _hits = 0;
+
     [System.Serializable]
     public class StatValuePair
     {
@@ -27,7 +33,8 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -40,16 +47,26 @@ public class Projectile : MonoBehaviour
     /// Apply stats to all of the ProjectileHitbox scripts found in this gameObject and all the children.
     /// </summary>
     /// <param name="stats"></param>
-    public void ApplyStats(Dictionary<Stat, float> stats) 
+    public void ApplyStats(Dictionary<Stat, float> stats)
     {
         StatsApplied.Clear();
-        GetComponents<ProjectileHitbox>().Concat(GetComponentsInChildren<ProjectileHitbox>()).ToList().ForEach(x => 
-        {
-            x.StatsApplied = StatsApplied;
-        });
-        foreach (KeyValuePair<Stat, float> pair in stats) StatsApplied.Add(new(pair.Key, pair.Value));
-    }
+        var hitboxes = GetComponents<ProjectileHitbox>().Concat(GetComponentsInChildren<ProjectileHitbox>());
 
+        foreach (var hitbox in hitboxes)
+        {
+            hitbox.StatsApplied = StatsApplied;
+        }
+        foreach (KeyValuePair<Stat, float> pair in stats)
+        {
+            StatsApplied.Add(new(pair.Key, pair.Value));
+        }
+        foreach (var hitbox in hitboxes)
+        {
+            hitbox.UpdatedStats(stats);
+        }
+
+
+    }
     public Dictionary<Stat, float> GetStatsAppliedAsDictionary() 
     {
         Dictionary<Stat, float> result = new Dictionary<Stat, float>();

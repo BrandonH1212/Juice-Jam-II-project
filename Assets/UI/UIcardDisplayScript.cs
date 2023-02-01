@@ -168,7 +168,7 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
     public void OnDrag(PointerEventData eventData)
     {
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
-        transform.position = Input.mousePosition * _canvas.scaleFactor + new Vector3(0, 0, 10);
+        transform.position = Input.mousePosition;
 
 
     }

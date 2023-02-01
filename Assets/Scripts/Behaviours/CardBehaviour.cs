@@ -5,6 +5,16 @@ using System.Linq;
 using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+
+public enum ConstantValues
+{
+    FireRate = 10,
+    ProjectileSpeed = 1,
+    Size = 10,
+
+}
+
+
 public abstract class CardBehaviour : MonoBehaviour
 {
     public CardBaseInstance CurrentCard;

@@ -20,26 +20,25 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        print("OnDrop");
         if (eventData.pointerDrag != null)
         {
             UIcardDisplayScript DisplayScript = eventData.pointerDrag.GetComponent<UIcardDisplayScript>();
-
+            
             if (DisplayScript != null)
             {
-                if (DisplayScript._cardIndex == _cardIndex) return;
+                if (DisplayScript._cardIndex == _cardIndex && !DisplayScript._fromInventory) return;
 
 
                 if (DisplayScript._fromInventory)
                 {
                     if (DisplayScript._cardIndex >= playerController.InventoryCards.Count) return;
-                    
-                    // playerController.SwapEquippedCardWithInventoryCard(_cardIndex, DisplayScript._cardIndex);
+
+                    playerController.EquipInventoryCard(DisplayScript._cardIndex, _cardIndex);
                 }
                 else
                 {
                     if (DisplayScript._cardIndex >= playerController.EquipedCards.Count) return;
-                    // playerController.SwapEquippedCards(_cardIndex, DisplayScript._cardIndex);
+                    playerController.SwapCard(DisplayScript._cardIndex, _cardIndex);
 
                 }
             }

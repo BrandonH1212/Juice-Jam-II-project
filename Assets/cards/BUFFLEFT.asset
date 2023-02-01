@@ -20,13 +20,13 @@ MonoBehaviour:
     cardIcon: {fileID: 0}
   BaseValue:
   - StatToAffect: 4
-    Value: 1
+    Value: 10
   - StatToAffect: 1
     Value: 10
   Modifiers:
   - Targets: 1
     StatToAffect: 3
     Operator: 0
-    Value: 10
+    Value: 50
   ProjectilePrefab: {fileID: 4613350625003615452, guid: b159d172027e5d946bf3b1c181bb45c2, type: 3}
   BehaviourName: ShootRegularly

@@ -91,6 +91,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatsApplied: []
+  DestroyOneOnHit: 0
+  UsePenetration: 1
+  OnHitEffect: {fileID: 9030887213305747989, guid: ed49ba927172afe4d8a6c4ac94b557a0, type: 3}
 --- !u!58 &8478932311985320633
 CircleCollider2D:
   m_ObjectHideFlags: 0
