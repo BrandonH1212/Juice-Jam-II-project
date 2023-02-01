@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
+using static UnityEngine.Rendering.VolumeComponent;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,10 +41,10 @@ public class PlayerController : MonoBehaviour
 
     public List<CardBase> InitialCards;
 
-    public List<CardBaseInstance> EquipedCards = new();
+    public List<CardBaseInstance?> EquipedCards = new();
     public List<CardBase> InventoryCards = new();
 
-    public CardBaseInstance EquipCard(CardBase c, int index = -1)
+    public CardBaseInstance CreateCardBaseInstance(CardBase c)
     {
         CardBaseInstance instanceCreated = new(c, null, this);
         if (c.BehaviourName != "")
@@ -52,60 +53,26 @@ public class PlayerController : MonoBehaviour
             newlyAddedInstance.CurrentCard = instanceCreated;
             instanceCreated.ComponentOnPlayerController = newlyAddedInstance;
         }
-        if (index == -1)
-        {
-            EquipedCards.Add(instanceCreated);
-        }
-        else
-        {
-            EquipedCards.RemoveAt(index);
-            EquipedCards.Insert(index, instanceCreated);
-        }
-
         return instanceCreated;
     }
 
-    public void SwapEquippedCardWithInventoryCard(int equippedIndex, int inventoryIndex)
+    public CardBaseInstance EquipCard(CardBase c)
     {
-        if (equippedIndex < 0 || equippedIndex >= EquipedCards.Count)
-        {
-            Debug.LogError("Invalid Equipped Index");
-            return;
-        }
-        if (inventoryIndex < 0 || inventoryIndex >= InventoryCards.Count)
-        {
-            Debug.LogError("Invalid Inventory Index");
-            return;
-        }
-
-        CardBase equippedCard = EquipedCards[equippedIndex].CardBase;
-        CardBase inventoryCard = InventoryCards[inventoryIndex];
-
-        InventoryCards.RemoveAt(inventoryIndex);
-        InventoryCards.Add(equippedCard);
-        EquipCard(inventoryCard, equippedIndex);
+        var card = CreateCardBaseInstance(c);
+        EquipedCards.Add(card);
+        return card;
     }
 
-
-    public void SwapEquippedCards(int index1, int index2)
+    public CardBaseInstance EquipCard(CardBase c, int index)
     {
-        if (index1 < 0 || index1 >= EquipedCards.Count)
-        {
-            Debug.LogError("Invalid index1");
-            return;
-        }
-        if (index2 < 0 || index2 >= EquipedCards.Count)
-        {
-            Debug.LogError("Invalid index2");
-            return;
-        }
+        var card = CreateCardBaseInstance(c);
+        EquipedCards.Insert(index, card);
+        return card;
+    }
 
-        CardBaseInstance card1 = EquipedCards[index1];
-        CardBaseInstance card2 = EquipedCards[index2];
-
-        EquipCard(card2.CardBase, index1);
-        EquipCard(card1.CardBase, index2);
-
+    public void SwapCard(int index1, int index2)
+    {
+        (EquipedCards[index2], EquipedCards[index1]) = (EquipedCards[index1], EquipedCards[index2]);
     }
 
     // Start is called before the first frame update
@@ -114,7 +81,12 @@ public class PlayerController : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        InitialCards.ForEach(cardBase => EquipCard(cardBase));
+
+        InitialCards.ForEach(cardBase => 
+        {
+            if (cardBase == null) EquipedCards.Add(null);
+            else EquipCard(cardBase);
+        });
     }
 
     // Update is called once per frame
@@ -155,7 +127,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
     public void TakeDamage(float damage) 
     {
         if (Shield > 0)
@@ -173,20 +144,21 @@ public class PlayerController : MonoBehaviour
     public bool TryGetEffectiveStatsOnCard(CardBaseInstance cardInstance, out Dictionary<Stat, float> effectiveStats) 
     {
         int index = -1;
-        for (int i = 0; i < EquipedCards.Count; i++)
+
+        if (cardInstance != null)
         {
-            var currentCard = EquipedCards[i];
-            if (currentCard.MemoryAddress == cardInstance.MemoryAddress) index = i;
+            for (int i = 0; i < EquipedCards.Count; i++)
+            {
+                if (EquipedCards[i] != null)
+                {
+                    var currentCard = EquipedCards[i];
+                    if (currentCard.MemoryAddress == cardInstance.MemoryAddress) index = i;
+                }
+            }
         }
-        if (index != -1)
-        {
-            effectiveStats = cardInstance.CardBase.GetFinalValue(EquipedCards.ToList(), index);
-            cardInstance._Stats = effectiveStats;
-        }
+        if (index != -1) { effectiveStats = cardInstance.CardBase.GetFinalValue(EquipedCards.ToList(), index); }
         
-        else effectiveStats = new();
+        else effectiveStats = CardBase.InitializeEmptyStatsList();
         return index != -1;
-
     }
-
 }

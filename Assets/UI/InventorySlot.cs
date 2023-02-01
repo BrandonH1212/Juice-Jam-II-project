@@ -34,12 +34,12 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                 {
                     if (DisplayScript._cardIndex >= playerController.InventoryCards.Count) return;
                     
-                    playerController.SwapEquippedCardWithInventoryCard(_cardIndex, DisplayScript._cardIndex);
+                    // playerController.SwapEquippedCardWithInventoryCard(_cardIndex, DisplayScript._cardIndex);
                 }
                 else
                 {
                     if (DisplayScript._cardIndex >= playerController.EquipedCards.Count) return;
-                    playerController.SwapEquippedCards(_cardIndex, DisplayScript._cardIndex);
+                    // playerController.SwapEquippedCards(_cardIndex, DisplayScript._cardIndex);
 
                 }
             }

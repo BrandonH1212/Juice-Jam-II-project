@@ -25,7 +25,11 @@ public abstract class CardBehaviour : MonoBehaviour
     /// <returns></returns>
     private bool CheckForUnsubscribion()
     {
-        if (!PlayerController.EquipedCards.Any(cardBaseInstance => cardBaseInstance.MemoryAddress == CurrentCard.MemoryAddress))
+        if (!PlayerController.EquipedCards.Any(instance => 
+        {
+            if (instance == null) return false;
+            else return instance.MemoryAddress == CurrentCard.MemoryAddress;
+        }))
         {
             PlayerController.GetComponents<CardBehaviour>().ToList().ForEach(component =>
             {

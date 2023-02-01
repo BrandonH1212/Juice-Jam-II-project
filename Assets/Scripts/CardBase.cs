@@ -117,6 +117,18 @@ public sealed class CardBase : ScriptableObject
     public GameObject ProjectilePrefab;
     public string BehaviourName = "";
 
+    /// <summary>
+    /// Create an empty list with (Key:Stat, Value:float) for each of the available stat, each with a default value of 0.
+    /// </summary>
+    /// <returns></returns>
+    public static Dictionary<Stat, float> InitializeEmptyStatsList() 
+    {
+        Dictionary<Stat, float> output = new();
+        // Initialize all cards stats with 0
+        foreach (Stat stat in Enum.GetValues(typeof(Stat))) { output.Add(stat, 0); }
+        return output;
+    }
+
     public Dictionary<Stat, float> GetFinalValue(List<CardBaseInstance> allCards, int currentCardIndex) 
     {
         List<Dictionary<Stat, float>> allCardsStat = new();
@@ -125,7 +137,7 @@ public sealed class CardBase : ScriptableObject
         foreach (CardBaseInstance card in allCards) 
         {
             Dictionary<Stat, float> currentCardStat = new();
-            foreach (StatFloatPair pair in card.CardBase.BaseValue) currentCardStat.Add(pair.StatToAffect, pair.Value);
+            if (card != null) if (!card.IsEmpty) foreach (StatFloatPair pair in card.CardBase.BaseValue) currentCardStat.Add(pair.StatToAffect, pair.Value);
             foreach (Stat stat in Enum.GetValues(typeof(Stat))) { if (!currentCardStat.ContainsKey(stat)) currentCardStat.Add(stat, 0); }
             allCardsStat.Add(currentCardStat);
         }
@@ -133,6 +145,10 @@ public sealed class CardBase : ScriptableObject
         // Populate Values and Modifiers from LEFT TO RIGHT
         for (int i = 0; i < allCards.Count; i++)
         {
+            // if the current slot is empty (null), skip
+            if (allCards[i] == null) continue;
+            if (allCards[i].IsEmpty) continue;
+
             CardBase currentCard = allCards[i].CardBase;
 
             foreach (Modifier mod in currentCard.Modifiers) 
@@ -232,6 +248,7 @@ public sealed class CardBaseInstance
     public Component ComponentOnPlayerController;
     public PlayerController PlayerController;
     public string MemoryAddress;
+    public bool IsEmpty { get { return CardBase == null; } }
     public Dictionary<Stat, float> _Stats = new Dictionary<Stat, float>();
 
     public CardBaseInstance(CardBase cardBase, Component componentOnController, PlayerController controller) 

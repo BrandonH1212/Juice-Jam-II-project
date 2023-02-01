@@ -49,6 +49,9 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
     private void ShowStats()
     {
         HideDisplays();
+
+        if (_cardBase == null) return;
+
         _title.text = _cardBase.Info.cardName;
         _description.text = _cardBase.Info.cardDescription;
 
