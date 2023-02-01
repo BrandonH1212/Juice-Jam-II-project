@@ -9,8 +9,9 @@ using UnityEngine;
 public enum ConstantValues
 {
     FireRate = 10,
-    ProjectileSpeed = 1,
+    ProjectileSpeed = 100,
     Size = 10,
+    Range = 3,
 
 }
 

@@ -12310,16 +12310,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InitialCards.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InventoryCards.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InitialCards.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: ec05dfd429cfdb54fba8fbbfb7a8ad75, type: 2}
+      objectReference: {fileID: 11400000, guid: c70f2b15a9558a043accc28d764e2a42, type: 2}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InitialCards.Array.data[1]
       value: 
@@ -12331,7 +12331,7 @@ PrefabInstance:
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InventoryCards.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 39301206e948515439010217dadd49f6, type: 2}
+      objectReference: {fileID: 11400000, guid: c70f2b15a9558a043accc28d764e2a42, type: 2}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InventoryCards.Array.data[1]
       value: 

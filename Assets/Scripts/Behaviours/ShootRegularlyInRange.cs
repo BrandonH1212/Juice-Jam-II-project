@@ -26,7 +26,7 @@ public class ShootRegularlyInRange : CardBehaviour
         if (TimeRemaining <= 0 && _effectiveStatThisCard[Stat.FireRate] > 0)
          {
             
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _effectiveStatThisCard[Stat.Range]);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _effectiveStatThisCard[Stat.Range] * (float)ConstantValues.Range);
             TargetObjects = new List<GameObject>();
 
             foreach (Collider2D c in colliders)

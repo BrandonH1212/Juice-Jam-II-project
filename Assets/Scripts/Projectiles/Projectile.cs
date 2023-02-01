@@ -12,9 +12,6 @@ using UnityEngine.Rendering;
 public class Projectile : MonoBehaviour
 {
 
-    private Rigidbody2D _rigidbody2D;
-
-    private int _hits = 0;
 
     [System.Serializable]
     public class StatValuePair
@@ -33,7 +30,6 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
 
     }
 
