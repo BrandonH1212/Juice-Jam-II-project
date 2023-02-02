@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 1901930457265704613}
   - component: {fileID: 4908139649036809931}
   - component: {fileID: 8633480627777935755}
+  - component: {fileID: 4315704077342604573}
   - component: {fileID: 2977580896947355376}
   - component: {fileID: 8478932311985320633}
   - component: {fileID: 6617850792624795624}
   - component: {fileID: 8377725600117857464}
-  - component: {fileID: 539835895050143079}
   m_Layer: 8
-  m_Name: BasicShotTargeted
+  m_Name: BasicShot
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fe5881d19372cb459aa39b56d32d9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToDestruct: 5
+  TimeToDestruct: 3
   RemainingTime: 0
 --- !u!114 &8633480627777935755
 MonoBehaviour:
@@ -65,6 +65,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatsApplied: []
+--- !u!114 &4315704077342604573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613350625003615452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce59d6a89a62f764bbd56a3a6894088a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: {x: 0, y: 2, z: 0}
 --- !u!114 &2977580896947355376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +94,7 @@ MonoBehaviour:
   DestroyOneOnHit: 0
   UsePenetration: 1
   OnHitEffect: {fileID: 9030887213305747989, guid: ed49ba927172afe4d8a6c4ac94b557a0, type: 3}
+  OnExplodeEffect: {fileID: 2265291083797641138, guid: 9cc1e4b609fbd614db8b824374298c4c, type: 3}
 --- !u!58 &8478932311985320633
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -170,17 +184,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &539835895050143079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4613350625003615452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba880a185b9dac54abe23b02590dcb2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetType: 0
-  _targetOffset: {x: 0, y: 0}

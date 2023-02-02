@@ -10,23 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16437974b82a9dc4e869b5e2260f47a5, type: 3}
-  m_Name: CircularCard
+  m_Name: CardBase
   m_EditorClassIdentifier: 
   Rarity: 0
   Info:
-    cardName: Circular Card
-    cardDescription: This is the most basic form of card.
+    cardName: 
+    cardDescription: 
     cardRarity: 0
     cardIcon: {fileID: 0}
-  BaseValue:
-  - StatToAffect: 4
-    Value: 1
-  - StatToAffect: 1
-    Value: 10
-  - StatToAffect: 3
-    Value: 10
-  - StatToAffect: 0
-    Value: 10
+  BaseValue: []
   Modifiers: []
-  ProjectilePrefab: {fileID: 696506881825720285, guid: 6d4014a801cc47247a93754bd4f3e351, type: 3}
-  BehaviourName: ShootRegularly
+  ProjectilePrefab: {fileID: 0}
+  BehaviourName: 

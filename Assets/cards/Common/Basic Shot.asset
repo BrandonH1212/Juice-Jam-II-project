@@ -30,5 +30,5 @@ MonoBehaviour:
   - StatToAffect: 3
     Value: 10
   Modifiers: []
-  ProjectilePrefab: {fileID: 4613350625003615452, guid: 1540cb5159296034a8fae4f538f08fe3, type: 3}
+  ProjectilePrefab: {fileID: 79827349592977929, guid: 37447c9384229194b8253711832f1ff7, type: 3}
   BehaviourName: ShootRegularlyInRange

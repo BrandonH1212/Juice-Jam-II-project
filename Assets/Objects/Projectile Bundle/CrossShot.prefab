@@ -95,6 +95,7 @@ MonoBehaviour:
   DestroyOneOnHit: 0
   UsePenetration: 1
   OnHitEffect: {fileID: 9030887213305747989, guid: ed49ba927172afe4d8a6c4ac94b557a0, type: 3}
+  OnExplodeEffect: {fileID: 0}
 --- !u!58 &2848145754097093166
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -294,6 +295,7 @@ MonoBehaviour:
   DestroyOneOnHit: 0
   UsePenetration: 1
   OnHitEffect: {fileID: 9030887213305747989, guid: ed49ba927172afe4d8a6c4ac94b557a0, type: 3}
+  OnExplodeEffect: {fileID: 0}
 --- !u!58 &2284004544721694977
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -425,7 +427,7 @@ Transform:
   m_GameObject: {fileID: 4613350625003615452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8866923152900971814}
@@ -557,6 +559,7 @@ MonoBehaviour:
   DestroyOneOnHit: 0
   UsePenetration: 1
   OnHitEffect: {fileID: 9030887213305747989, guid: ed49ba927172afe4d8a6c4ac94b557a0, type: 3}
+  OnExplodeEffect: {fileID: 0}
 --- !u!58 &4041630858914767782
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -756,6 +759,7 @@ MonoBehaviour:
   DestroyOneOnHit: 0
   UsePenetration: 1
   OnHitEffect: {fileID: 9030887213305747989, guid: ed49ba927172afe4d8a6c4ac94b557a0, type: 3}
+  OnExplodeEffect: {fileID: 0}
 --- !u!58 &5174876228377080539
 CircleCollider2D:
   m_ObjectHideFlags: 0

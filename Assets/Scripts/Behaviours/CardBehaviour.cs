@@ -12,6 +12,7 @@ public enum ConstantValues
     ProjectileSpeed = 100,
     Size = 10,
     Range = 3,
+    SplashRange = 2,
 
 }
 

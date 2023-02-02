@@ -15563,12 +15563,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InventoryCards.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InitialCards.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 04946f1e390ec4040bf5e40f2d93fa63, type: 2}
+      objectReference: {fileID: 11400000, guid: 39cd6bd1e60f55c4584fa2e344539227, type: 2}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InitialCards.Array.data[1]
       value: 
@@ -15596,7 +15596,7 @@ PrefabInstance:
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InventoryCards.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: da03f950b6ce8e947a078c5868e866fb, type: 2}
+      objectReference: {fileID: 11400000, guid: 04946f1e390ec4040bf5e40f2d93fa63, type: 2}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: InventoryCards.Array.data[2]
       value: 
@@ -15609,6 +15609,14 @@ PrefabInstance:
       propertyPath: InventoryCards.Array.data[4]
       value: 
       objectReference: {fileID: 11400000, guid: 47be9e9ebb9606944910f3a35f6caf8f, type: 2}
+    - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: InventoryCards.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 39cd6bd1e60f55c4584fa2e344539227, type: 2}
+    - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: InventoryCards.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: ded82b92e9ffd954ba6a67d4dfdbe519, type: 2}
     - target: {fileID: 320728085953499815, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: m_Name
       value: Player

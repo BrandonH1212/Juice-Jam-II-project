@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using static Projectile;
 
@@ -13,9 +14,14 @@ public class ProjectileHitbox : MonoBehaviour
     public bool DestroyOneOnHit = false;
     public bool UsePenetration = true;
     private int _hits = 0;
-    
+
+    Dictionary<Stat, float> _statsApplied = new();
+
     [SerializeField]
     public GameObject OnHitEffect;
+
+    [SerializeField]
+    public GameObject OnExplodeEffect;
 
     public Dictionary<Stat, float> GetStatsAppliedAsDictionary()
     {
@@ -37,16 +43,36 @@ public class ProjectileHitbox : MonoBehaviour
 
     public void UpdatedStats(Dictionary<Stat, float> stats)
     {
+        _statsApplied = stats;
         float _newSize = (float)Mathf.Clamp(stats[Stat.ProjectileSize] / (float)ConstantValues.Size, 0.1f, 100f);
         transform.localScale = new Vector3(_newSize, _newSize, transform.localScale.z);
-        _hits = stats[Stat.Penetration] > 0 ? (int)stats[Stat.Penetration] : 1;
 
     }
+
+    
+    private void DoSplashDamage(Vector2 position, float radius, float damage)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, radius * (float)ConstantValues.SplashRange, LayerMask.GetMask("enemy"));
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.gameObject.tag == "Enemy")
+            {
+                collider.gameObject.GetComponent<EnemyBase>().ApplyDamage(damage);
+                if (OnExplodeEffect != null) Instantiate(OnExplodeEffect, collider.transform.position, Quaternion.identity);
+            }
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            if (_statsApplied.ContainsKey(Stat.SplashDamage) && _statsApplied.ContainsKey(Stat.SplashRadius))
+            {
+                DoSplashDamage(transform.position, _statsApplied[Stat.SplashRadius], _statsApplied[Stat.SplashDamage]);
+            }
+            
             if (OnHitEffect != null)
             {
                 GameObject effect = Instantiate(OnHitEffect, transform.position, Quaternion.identity);
@@ -54,8 +80,10 @@ public class ProjectileHitbox : MonoBehaviour
             }
             if (UsePenetration)
             {
-                _hits--;
-                if (_hits <= 0)
+                _hits++;
+                var maxHits = 0;
+                if (_statsApplied.ContainsKey(Stat.Penetration)) maxHits = (int)_statsApplied[Stat.Penetration];
+                if (_hits > maxHits)
                 {
                     Destroy(gameObject);
                 }

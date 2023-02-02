@@ -28,7 +28,7 @@ public class InitialVelocityTowardsEnemy : MonoBehaviour
 
         
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 150);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 150, LayerMask.GetMask("enemy"));
 
         if (colliders.Length == 0) return;
 
