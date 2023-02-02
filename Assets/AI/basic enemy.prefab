@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2871950534634296127}
   - component: {fileID: 2871950534634296120}
   - component: {fileID: 6913121456242553913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: basic enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 20
+  XpDrop: 1
   OnDeathEffect: {fileID: 2030456091690480152, guid: 8d96705d4fa616844bf4ad97a9219e96, type: 3}
   OnDamagedEffect: {fileID: 1835091482895145635, guid: 42eaa064c3954f8479c39274e99ba9e6, type: 3}
   OnSpawnEffect: {fileID: 0}

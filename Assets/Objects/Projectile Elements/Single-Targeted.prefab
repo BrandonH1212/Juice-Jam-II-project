@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6620464027441651735}
   - component: {fileID: 1619963349914674473}
   - component: {fileID: 3100957570871981269}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Single-Targeted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 1549235871301495358}
   - component: {fileID: 6499330578846944134}
   - component: {fileID: 4460315194399144891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BasicShot
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -244,4 +244,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetType: 0
-  TargetingRadius: 125
+  _targetOffset: {x: 0, y: 0}

@@ -32,6 +32,7 @@ public class ProjectileHitbox : MonoBehaviour
     {
         _collider2d = GetComponent<CircleCollider2D>();
         if (_collider2d == null) Debug.LogError("ProjectileHitbox should only be added to GameObject with CircleCollider2D. Remember to put CircleCollider2D when designing your projectile.");
+        _collider2d.isTrigger = true;
     }
 
     public void UpdatedStats(Dictionary<Stat, float> stats)
@@ -42,7 +43,7 @@ public class ProjectileHitbox : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {

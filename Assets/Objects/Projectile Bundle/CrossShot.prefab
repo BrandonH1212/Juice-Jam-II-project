@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8949769331341062021}
   - component: {fileID: 7708808621853112338}
   - component: {fileID: 6371411515035887947}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: scatter shot (2)
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 8852357240895808804}
   - component: {fileID: 5484651008662097459}
   - component: {fileID: 2704079302399433437}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: scatter shot (3)
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 1901930457265704613}
   - component: {fileID: 4908139649036809931}
   - component: {fileID: 8633480627777935755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrossShot
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 4181506109350653657}
   - component: {fileID: 8065589786169014117}
   - component: {fileID: 6598468147864962076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: scatter shot (1)
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 8034692491101896748}
   - component: {fileID: 172630032904774948}
   - component: {fileID: 2543260316057367982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: scatter shot
   m_TagString: Projectile
   m_Icon: {fileID: 0}

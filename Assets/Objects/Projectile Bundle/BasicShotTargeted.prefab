@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6617850792624795624}
   - component: {fileID: 8377725600117857464}
   - component: {fileID: 539835895050143079}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BasicShotTargeted
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -183,3 +183,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetType: 0
+  _targetOffset: {x: 0, y: 0}
