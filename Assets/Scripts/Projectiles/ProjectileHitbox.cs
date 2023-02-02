@@ -16,7 +16,17 @@ public class ProjectileHitbox : MonoBehaviour
     
     [SerializeField]
     public GameObject OnHitEffect;
-    
+
+    public Dictionary<Stat, float> GetStatsAppliedAsDictionary()
+    {
+        Dictionary<Stat, float> stats = new();
+        foreach (StatValuePair pair in StatsApplied)
+        {
+            stats.Add(pair.Stat, pair.Value);
+        }
+        return stats;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

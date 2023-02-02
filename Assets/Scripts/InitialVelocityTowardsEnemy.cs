@@ -12,24 +12,23 @@ public enum TargetType
 public class InitialVelocityTowardsEnemy : MonoBehaviour
 {
     [SerializeField] private TargetType _targetType;
+    [SerializeField] private Vector2 _targetOffset = Vector2.zero;
 
 
     private Rigidbody2D _rigidbody2d;
-    private Projectile _projectile;
+    private ProjectileHitbox _projectile;
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
-        _projectile = GetComponent<Projectile>();
+        _projectile = GetComponent<ProjectileHitbox>();
         if (_rigidbody2d == null) Debug.LogError("InitialVelocityTowardsEnemy should only be added to GameObject with Rigidbody2D. Remember to put Rigidbody2D when designing your projectile.");
         if (_projectile == null) Debug.LogError("InitialVelocityTowardsEnemy should only be added to GameObject with Projectile. Remember to put Projectile when designing your projectile.");
 
 
         
-        Dictionary<Stat, float> _stats = _projectile.GetStatsAppliedAsDictionary();
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _stats[Stat.Range] * (float)ConstantValues.Range);
-        print(_stats[Stat.Range]);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 150);
 
         if (colliders.Length == 0) return;
 
@@ -84,6 +83,6 @@ public class InitialVelocityTowardsEnemy : MonoBehaviour
             }
 
         }
-        _rigidbody2d.AddForce((target.transform.position - transform.position).normalized * _stats[Stat.ProjectileSpeed] / (float)ConstantValues.ProjectileSpeed);
+        _rigidbody2d.AddForce(((Vector2)target.transform.position + _targetOffset - (Vector2)transform.position).normalized * _projectile.GetStatsAppliedAsDictionary()[Stat.ProjectileSpeed] / (float)ConstantValues.ProjectileSpeed);
     }
 }

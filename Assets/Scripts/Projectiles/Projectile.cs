@@ -30,14 +30,10 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //ApplyStats(GetStatsAppliedAsDictionary());
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     /// <summary>
     /// Apply stats to all of the ProjectileHitbox scripts found in this gameObject and all the children.

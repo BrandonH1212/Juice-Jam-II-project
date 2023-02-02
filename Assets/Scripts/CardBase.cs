@@ -231,7 +231,9 @@ public sealed class CardBase : ScriptableObject
                 // ...
             }
         }
-
+        
+        // set _Stats to the final value
+        allCards[currentCardIndex]._Stats = allCardsStat[currentCardIndex];
         return allCardsStat[currentCardIndex];
     }
 }
@@ -249,7 +251,7 @@ public sealed class CardBaseInstance
     public PlayerController PlayerController;
     public string MemoryAddress;
     public bool IsEmpty { get { return CardBase == null; } }
-    public Dictionary<Stat, float> _Stats = new Dictionary<Stat, float>();
+    public Dictionary<Stat, float> _Stats = new Dictionary<Stat, float>(); // this is the final value of the card after all modifiers are applied
 
     public CardBaseInstance(CardBase cardBase, Component componentOnController, PlayerController controller) 
     {
