@@ -15,7 +15,7 @@ public class ProjectileHitbox : MonoBehaviour
     public bool UsePenetration = true;
     private int _hits = 0;
 
-    Dictionary<Stat, float> _statsApplied = new();
+    public Dictionary<Stat, float> _statsApplied = new();
 
     [SerializeField]
     public GameObject OnHitEffect;

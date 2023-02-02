@@ -10,42 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16437974b82a9dc4e869b5e2260f47a5, type: 3}
-  m_Name: ExplosiveAmmo
+  m_Name: CannonShot
   m_EditorClassIdentifier: 
   Rarity: 1
   Info:
-    cardName: 'Explosive ammo '
-    cardDescription: Card on right gain 20% bullet speed and 1 extra penetration
-      Card on left lower fire rate by 50%
+    cardName: Cannon Shot
+    cardDescription: Bullet size of all other cards increased by 50% all other cards
+      -20%  fire rate
     cardRarity: 1
     cardIcon: {fileID: 0}
   BaseValue:
   - StatToAffect: 0
-    Value: 10
+    Value: 20
   - StatToAffect: 1
     Value: 10
   - StatToAffect: 3
-    Value: 10
+    Value: 50
   - StatToAffect: 2
-    Value: 10
+    Value: 16
   - StatToAffect: 4
-    Value: 8
-  - StatToAffect: 9
-    Value: 2
-  - StatToAffect: 10
+    Value: 1
+  - StatToAffect: 5
     Value: 10
   Modifiers:
-  - Targets: 4
-    StatToAffect: 2
+  - Targets: 0
+    StatToAffect: 3
     Operator: 1
-    Value: 1.2
-  - Targets: 4
-    StatToAffect: 5
-    Operator: 0
-    Value: 1
-  - Targets: 3
+    Value: 1.5
+  - Targets: 0
     StatToAffect: 4
     Operator: 1
-    Value: 0.5
-  ProjectilePrefab: {fileID: 79827349592977929, guid: 983d44cb3c979c44c852bec03bec8f72, type: 3}
+    Value: 0.8
+  ProjectilePrefab: {fileID: 79827349592977929, guid: 1dede2c52d686a346b1e677fe426e043, type: 3}
   BehaviourName: ShootRegularlyInRange

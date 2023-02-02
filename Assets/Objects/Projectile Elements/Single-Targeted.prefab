@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79827349592977929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75.461136, y: 8.079249, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -142,6 +142,7 @@ MonoBehaviour:
   DestroyOneOnHit: 0
   UsePenetration: 1
   OnHitEffect: {fileID: 9030887213305747989, guid: ed49ba927172afe4d8a6c4ac94b557a0, type: 3}
+  OnExplodeEffect: {fileID: 0}
 --- !u!58 &7770103135661339948
 CircleCollider2D:
   m_ObjectHideFlags: 0

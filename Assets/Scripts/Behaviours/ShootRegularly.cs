@@ -19,7 +19,6 @@ public class ShootRegularly : CardBehaviour
     public void FixedUpdate()
     {
         TimeRemaining -= Time.deltaTime;
-        print(TimeRemaining);
 
         if (TimeRemaining <= 0 && _effectiveStatThisCard[Stat.FireRate] > 0)
         {

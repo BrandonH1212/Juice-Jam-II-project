@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1619963349914674473}
   - component: {fileID: 3100957570871981269}
   m_Layer: 8
-  m_Name: Single-Moving Component
+  m_Name: CannonShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 7770103135661339948}
   - component: {fileID: 1549235871301495358}
   - component: {fileID: 6499330578846944134}
-  - component: {fileID: 1511644741928033881}
+  - component: {fileID: 4460315194399144891}
   m_Layer: 8
   m_Name: BasicShot
   m_TagString: Projectile
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fe5881d19372cb459aa39b56d32d9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToDestruct: 3
+  TimeToDestruct: 6
   RemainingTime: 0
 --- !u!114 &5861580977279555451
 MonoBehaviour:
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1726204995, guid: d54e2441662f52148aeda78f801fd794, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -232,7 +232,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1511644741928033881
+--- !u!114 &4460315194399144891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,7 +241,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7455223476341448234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce59d6a89a62f764bbd56a3a6894088a, type: 3}
+  m_Script: {fileID: 11500000, guid: ba880a185b9dac54abe23b02590dcb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: {x: 0, y: 2, z: 0}
+  _targetType: 0
+  _targetOffset: {x: 0, y: 0}

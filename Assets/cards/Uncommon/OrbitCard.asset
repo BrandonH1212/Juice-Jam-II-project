@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16437974b82a9dc4e869b5e2260f47a5, type: 3}
+  m_Name: OrbitCard
+  m_EditorClassIdentifier: 
+  Rarity: 1
+  Info:
+    cardName: BurstShot
+    cardDescription: reduces damage of adjacent cards by 25%
+    cardRarity: 1
+    cardIcon: {fileID: 0}
+  BaseValue:
+  - StatToAffect: 4
+    Value: 1
+  - StatToAffect: 1
+    Value: 4
+  - StatToAffect: 3
+    Value: 5
+  Modifiers:
+  - Targets: 5
+    StatToAffect: 1
+    Operator: 1
+    Value: 0.75
+  ProjectilePrefab: {fileID: 696506881825720285, guid: 6d4014a801cc47247a93754bd4f3e351, type: 3}
+  BehaviourName: ShootRegularly
