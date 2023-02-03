@@ -46,7 +46,7 @@ public class ScrapManager : MonoBehaviour
             _playerController.InventoryCards.RemoveAt(_scrapSlot2._linkedCardIndex);
             _scrapSlot1._linkedCardIndex = -1;
             _scrapSlot2._linkedCardIndex = -1;
-            _playerController.InventoryCards.Add(CardDataManager.instance.GetRandomCard(rarity));
+            _playerController.AcquireNewCard(rarity);
 
         }
     }
