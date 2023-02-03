@@ -44,6 +44,9 @@ public class PlayerController : MonoBehaviour
     public List<CardBaseInstance?> EquipedCards = new();
     public List<CardBase> InventoryCards = new();
 
+
+    private CardAcquiredDisplay CardDisplay = null;
+    
     public CardBaseInstance CreateCardBaseInstance(CardBase c)
     {
         CardBaseInstance instanceCreated = new(c, null, this);
@@ -83,18 +86,39 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public CardBase GetRandomCard(CardRarity rarity)
+    {
+        CardDataManager dataManager = CardDataManager.instance;
+
+        CardBase randomCard = dataManager.GetRandomCard(rarity);
+
+        return randomCard;
+    }
+
+    public void AcquireNewCard(CardRarity rarity= CardRarity.Common)
+    {
+        InventoryCards.Add(GetRandomCard(rarity));
+
+        if (InventoryCards.Count == 0) CardDisplay.Display(0);
+        else CardDisplay.Display(InventoryCards.Count-1);
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
+        CardDisplay = FindObjectOfType<CardAcquiredDisplay>();
+        
         InitialCards.ForEach(cardBase => 
         {
             if (cardBase == null) EquipedCards.Add(null);
             else EquipCard(cardBase);
         });
+
+        AcquireNewCard();
     }
 
     // Update is called once per frame

@@ -17,7 +17,9 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
     [SerializeField] private TMP_Text _description;
 
     [SerializeField] private bool _isDragable = true;
-    
+
+    [SerializeField] private bool IsScrapBox = false;
+
     private GameObject _playerControllerObj;
     private PlayerController _ControlerScript;
     private CanvasGroup _canvasGroup;
@@ -121,6 +123,13 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
     {
 
         gameObject.SetActive(true);
+
+        if (_cardIndex == -1)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (!_fromInventory && _cardIndex >= _ControlerScript.EquipedCards.Count)
         {
             gameObject.SetActive(false);
@@ -151,7 +160,7 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
     void Update()
     {
         timeSinceLastCheck += Time.deltaTime;
-        if (timeSinceLastCheck >= 0.1f)
+        if (timeSinceLastCheck >= 0.075f)
         {
             timeSinceLastCheck = 0f;
             SetUp();
@@ -160,6 +169,7 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!_isDragable) return;
         transform.position = originalPosition;
         _canvasGroup.alpha = 1f;
         _canvasGroup.blocksRaycasts = true;
@@ -167,6 +177,7 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!_isDragable) return;
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
         transform.position = Input.mousePosition;
 
@@ -175,6 +186,7 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!_isDragable) return;
         originalPosition = transform.position;
         _canvasGroup.alpha = .6f;
         _canvasGroup.blocksRaycasts = false;

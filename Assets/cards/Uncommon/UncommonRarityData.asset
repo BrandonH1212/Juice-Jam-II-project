@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c337d4d56dbcdd48b3d7a4d46814592, type: 3}
+  m_Name: UncommonRarityData
+  m_EditorClassIdentifier: 
+  rarity: 0
+  rarityColor: {r: 0.101960786, g: 0.7372549, b: 0.6117647, a: 1}
+  raritySubColor: {r: 0.08627451, g: 0.627451, b: 0.52156866, a: 1}
+  rarityCards:
+  - {fileID: 11400000, guid: b1d94d0f67a0c1a4197dfdc1b63e3513, type: 2}
+  - {fileID: 11400000, guid: 2ce09408bea1f87419e9f727f12aef35, type: 2}
+  - {fileID: 11400000, guid: 39cd6bd1e60f55c4584fa2e344539227, type: 2}
+  - {fileID: 11400000, guid: 4a364bfbc2862974a94e02ac988ce24c, type: 2}
+  - {fileID: 11400000, guid: f2a1db39fc90893469eb80de46066b1f, type: 2}

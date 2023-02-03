@@ -9,6 +9,8 @@ public class DisableToggleButton : MonoBehaviour
     [SerializeField] private Button _toggleButton;
     [SerializeField] private GameObject _toggleObj;
 
+    [SerializeField] private List<GameObject> _hideOthers;
+
     void Start()
     {
         _toggleButton.onClick.AddListener(Toggle);
@@ -18,5 +20,9 @@ public class DisableToggleButton : MonoBehaviour
     private void Toggle()
     {
         _toggleObj.SetActive(!_toggleObj.activeSelf);
+        foreach (GameObject obj in _hideOthers)
+        {
+            obj.SetActive(false);
+        }
     }
 }
