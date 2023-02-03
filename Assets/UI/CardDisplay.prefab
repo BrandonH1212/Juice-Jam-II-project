@@ -1291,7 +1291,15 @@ MonoBehaviour:
   - {fileID: 5326259900723056729}
   _title: {fileID: 2954692656397633069}
   _description: {fileID: 1839635367085903605}
+  PrimaryColorsChanges:
+  - {fileID: 8191451299248827360}
+  SecondaryColorsChanges:
+  - {fileID: 6556990067793383326}
+  - {fileID: 7604169631130640866}
+  - {fileID: 5946067871624808995}
+  - {fileID: 742011610289689652}
   _isDragable: 1
+  IsScrapBox: 0
   _card:
     CardBase: {fileID: 0}
     ComponentOnPlayerController: {fileID: 0}

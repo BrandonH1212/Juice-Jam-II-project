@@ -38,14 +38,14 @@ public class ScrapManager : MonoBehaviour
         {
             _scrapSlot1._isLinked = false;
             _scrapSlot2._isLinked = false;
-            _scrapSlot1._linkedCardIndex = -1;
-            _scrapSlot2._linkedCardIndex = -1;
             _scrapSlot1._linkedCardDisplayScript.gameObject.SetActive(false);
             _scrapSlot2._linkedCardDisplayScript.gameObject.SetActive(false);
-            _scrapPanel.SetActive(false);
-            CardRarity rarity = _playerController.InventoryCards[_scrapSlot1._linkedCardIndex].Rarity + 1;
+            if (_scrapPanel != null) _scrapPanel.SetActive(false);
+            CardRarity rarity = (CardRarity)((int)_playerController.InventoryCards[_scrapSlot1._linkedCardIndex].Rarity + 1);
             _playerController.InventoryCards.RemoveAt(_scrapSlot1._linkedCardIndex);
             _playerController.InventoryCards.RemoveAt(_scrapSlot2._linkedCardIndex);
+            _scrapSlot1._linkedCardIndex = -1;
+            _scrapSlot2._linkedCardIndex = -1;
             _playerController.InventoryCards.Add(CardDataManager.instance.GetRandomCard(rarity));
 
         }

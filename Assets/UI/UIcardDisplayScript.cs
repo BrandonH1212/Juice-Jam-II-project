@@ -15,7 +15,8 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
     [SerializeField] private List<GameObject> ModifierDisplaySlots;
     [SerializeField] private TMP_Text _title;
     [SerializeField] private TMP_Text _description;
-
+    [SerializeField] private List<Image> PrimaryColorsChanges = new List<Image>();
+    [SerializeField] private List<Image> SecondaryColorsChanges = new List<Image>();
     [SerializeField] private bool _isDragable = true;
 
     [SerializeField] private bool IsScrapBox = false;
@@ -28,6 +29,8 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
     public CardBaseInstance _card;
     public CardBase _cardBase;
     private Vector3 originalPosition;
+
+    
     
     
 
@@ -56,6 +59,13 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
 
         _title.text = _cardBase.Info.cardName;
         _description.text = _cardBase.Info.cardDescription;
+
+        RarityData rarityData = CardDataManager.instance.GetRarityData(_cardBase.Info.cardRarity);
+
+
+        foreach (Image image in PrimaryColorsChanges) image.color = rarityData.rarityColor;
+        foreach (Image image in SecondaryColorsChanges) image.color = rarityData.raritySubColor;
+
 
         List<StatFloatPair> values = new List<StatFloatPair>();
         if (_card != null)
