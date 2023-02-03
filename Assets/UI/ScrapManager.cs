@@ -35,12 +35,16 @@ public class ScrapManager : MonoBehaviour
     public void Scrap()
     {
         if (_playerController.InventoryCards[_scrapSlot1._linkedCardIndex].Rarity == _playerController.InventoryCards[_scrapSlot2._linkedCardIndex].Rarity)
-        {
+        {   
             _scrapSlot1._isLinked = false;
             _scrapSlot2._isLinked = false;
             _scrapSlot1._linkedCardDisplayScript.gameObject.SetActive(false);
             _scrapSlot2._linkedCardDisplayScript.gameObject.SetActive(false);
+            
+            if (_scrapSlot1._linkedCardIndex == _scrapSlot2._linkedCardIndex) return;
+            
             if (_scrapPanel != null) _scrapPanel.SetActive(false);
+
             CardRarity rarity = (CardRarity)((int)_playerController.InventoryCards[_scrapSlot1._linkedCardIndex].Rarity + 1);
             _playerController.InventoryCards.RemoveAt(_scrapSlot1._linkedCardIndex);
             _playerController.InventoryCards.RemoveAt(_scrapSlot2._linkedCardIndex);

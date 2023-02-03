@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1619963349914674473}
   - component: {fileID: 3100957570871981269}
   m_Layer: 8
-  m_Name: Single-Targeted-exploding
+  m_Name: Single-Targeted-furthest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fe5881d19372cb459aa39b56d32d9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToDestruct: 4
+  TimeToDestruct: 5
   RemainingTime: 0
 --- !u!114 &3100957570871981269
 MonoBehaviour:
@@ -141,8 +141,8 @@ MonoBehaviour:
   StatsApplied: []
   DestroyOneOnHit: 0
   UsePenetration: 1
-  OnHitEffect: {fileID: 0}
-  OnExplodeEffect: {fileID: 2265291083797641138, guid: 9cc1e4b609fbd614db8b824374298c4c, type: 3}
+  OnHitEffect: {fileID: 9030887213305747989, guid: ed49ba927172afe4d8a6c4ac94b557a0, type: 3}
+  OnExplodeEffect: {fileID: 0}
 --- !u!58 &7770103135661339948
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1726204995, guid: d54e2441662f52148aeda78f801fd794, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.037449837, a: 1}
+  m_Color: {r: 0.94509804, g: 0.76862746, b: 0.05882353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -244,5 +244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba880a185b9dac54abe23b02590dcb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetType: 0
+  _targetType: 1
   _targetOffset: {x: 0, y: 0}
+  _useRange: 1

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIXpBar : MonoBehaviour
 {
     private static UIXpBar instance;
+
+    [SerializeField]
+    private TMPro.TextMeshProUGUI _xpText = null;
 
     public static UIXpBar Instance
     {
@@ -42,12 +46,14 @@ public class UIXpBar : MonoBehaviour
     {
         _bar = GetComponentsInChildren<Image>()[1];
         _bar.rectTransform.localScale = new Vector3(0f, 0.8f, 1);
-        
+        _xpText.text = "Level: " + "XP: " + "XX/XX";
+
     }
 
     public void UpdateBar(XpInfo _xpInfo)
     {
         _bar.rectTransform.localScale = new Vector3((float)_xpInfo.currentXP / (float)_xpInfo.XpRequired, 0.8f, 1);
+        _xpText.text = "Level: " + _xpInfo.currentLevel + " XP: " + _xpInfo.currentXP + "/" + _xpInfo.XpRequired;
     }
 
 

@@ -22,11 +22,11 @@ MonoBehaviour:
   - StatToAffect: 0
     Value: 10
   - StatToAffect: 4
-    Value: 10
+    Value: 6
   - StatToAffect: 2
     Value: 8
   - StatToAffect: 1
-    Value: 8
+    Value: 5
   - StatToAffect: 3
     Value: 10
   Modifiers: []

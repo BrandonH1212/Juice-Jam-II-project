@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rarity: 0
   Info:
-    cardName: empty
-    cardDescription: an empty card slot used for testing
+    cardName: Empty Slot
+    cardDescription: 'an empty card slot drag a card from inventory onto this to
+      equip it  '
     cardRarity: 0
     cardIcon: {fileID: 0}
   BaseValue: []

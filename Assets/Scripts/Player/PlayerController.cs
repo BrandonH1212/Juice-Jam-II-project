@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     // public float TimeToShoot = 1;
 
     public float Health { get; private set; } = 100;
-    public float MovementSpeed { get; private set; } = 50;
+    public float MovementSpeed { get; private set; } = 20;
     public float Shield { get; private set; }
     public float ShieldRegenerationSpeed { get; private set; }
     public float DamageReduction { get; private set; }
@@ -81,6 +81,14 @@ public class PlayerController : MonoBehaviour
     public void EquipInventoryCard(int cardIndexInInventory, int slotToReplace) 
     {
         var newInstance = CreateCardBaseInstance(InventoryCards[cardIndexInInventory]);
+        // if the card name is "Empty Slot" dont add it to the inventory (hacky fix for now )
+        if (EquipedCards[slotToReplace].CardBase.Info.cardName == "Empty Slot")
+        {
+            InventoryCards.RemoveAt(cardIndexInInventory);
+            EquipedCards[slotToReplace] = newInstance;
+            return;
+        }
+        
         InventoryCards[cardIndexInInventory] = EquipedCards[slotToReplace].CardBase;
         EquipedCards[slotToReplace] = newInstance;
 
@@ -117,7 +125,6 @@ public class PlayerController : MonoBehaviour
             if (cardBase == null) EquipedCards.Add(null);
             else EquipCard(cardBase);
         });
-
         AcquireNewCard();
     }
 

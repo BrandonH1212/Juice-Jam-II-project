@@ -165,9 +165,9 @@ public class UIcardDisplayScript : MonoBehaviour, IDragHandler, IEndDragHandler,
         ShowStats();
     }
 
-    private float timeSinceLastCheck;
+    public float timeSinceLastCheck;
 
-    void Update()
+    void FixedUpdate()
     {
         timeSinceLastCheck += Time.deltaTime;
         if (timeSinceLastCheck >= 0.075f)

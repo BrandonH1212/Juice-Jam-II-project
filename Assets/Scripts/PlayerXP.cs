@@ -16,11 +16,11 @@ public class PlayerXP : MonoBehaviour
     private static PlayerXP instance;
     public static PlayerXP Instance { get { return instance; } }
 
-    private int _xpRequired = 100;
+    private int _xpRequired = 10;
     [SerializeField] private int startingLevel = 1;
     private int currentLevel;
     private int currentXP;
-
+    private PlayerController _playerController;
     public UnityEvent onXPChanged;
     public UnityEvent onLevelUp;
 
@@ -35,8 +35,9 @@ public class PlayerXP : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        _playerController = FindObjectOfType<PlayerController>();
         currentLevel = startingLevel;
+        
     }
 
     public XpInfo GetXPInfo()
@@ -44,6 +45,17 @@ public class PlayerXP : MonoBehaviour
         return new XpInfo() { currentLevel = currentLevel, currentXP = currentXP, XpRequired = _xpRequired };
     }
 
+    public void LevelUp()
+    {
+        currentLevel++;
+        onLevelUp.Invoke();
+        _xpRequired = (int)(_xpRequired * math.pow(1.1, currentLevel));
+        print(_xpRequired);
+        currentXP = 0;
+        onXPChanged.Invoke();
+        UIXpBar.Instance.UpdateBar(GetXPInfo());
+        _playerController.AcquireNewCard(CardRarity.Common);
+    }
 
 
     public void AddXP(int amount)
@@ -51,10 +63,7 @@ public class PlayerXP : MonoBehaviour
         currentXP += amount;
         while (currentXP >= _xpRequired)
         {
-            currentLevel++;
-            onLevelUp.Invoke();
-            currentXP = 0;
-            _xpRequired = (int)(100 * math.pow(1.1, currentLevel));
+            LevelUp();
 
         }
         onXPChanged.Invoke();

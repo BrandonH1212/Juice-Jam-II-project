@@ -13,6 +13,7 @@ public class InitialVelocityTowardsEnemy : MonoBehaviour
 {
     [SerializeField] private TargetType _targetType;
     [SerializeField] private Vector2 _targetOffset = Vector2.zero;
+    [SerializeField] private bool _useRange = false;
 
 
     private Rigidbody2D _rigidbody2d;
@@ -25,12 +26,18 @@ public class InitialVelocityTowardsEnemy : MonoBehaviour
         if (_rigidbody2d == null) Debug.LogError("InitialVelocityTowardsEnemy should only be added to GameObject with Rigidbody2D. Remember to put Rigidbody2D when designing your projectile.");
         if (_projectile == null) Debug.LogError("InitialVelocityTowardsEnemy should only be added to GameObject with Projectile. Remember to put Projectile when designing your projectile.");
 
-
-        
-
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 150, LayerMask.GetMask("enemy"));
+        Collider2D[] colliders;
+        if (_useRange)
+        {
+            colliders = Physics2D.OverlapCircleAll(transform.position, _projectile.GetStatsAppliedAsDictionary()[Stat.Range] * (float)ConstantValues.Range, LayerMask.GetMask("enemy"));
+        }
+        else
+        {
+            colliders = Physics2D.OverlapCircleAll(transform.position, 150, LayerMask.GetMask("enemy"));
+        }
 
         if (colliders.Length == 0) return;
+
 
         GameObject target = null;
 

@@ -13,6 +13,7 @@ public class CardAcquiredDisplay : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>();
         cardDisplayScript = GetComponentInChildren<UIcardDisplayScript>();
+        canvasGroup.alpha = 0;
     }
 
     public void Display(int _cardIndex)
@@ -26,7 +27,7 @@ public class CardAcquiredDisplay : MonoBehaviour
     {
         canvasGroup.alpha = 1f;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         float elapsedTime = 0f;
         while (elapsedTime < fadeTime)

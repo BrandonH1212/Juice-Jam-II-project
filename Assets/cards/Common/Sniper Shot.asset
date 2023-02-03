@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16437974b82a9dc4e869b5e2260f47a5, type: 3}
-  m_Name: Basic Shot
+  m_Name: Sniper Shot
   m_EditorClassIdentifier: 
   Rarity: 0
   Info:
-    cardName: Basic Shot
-    cardDescription: Shoots one projectile towards closest enemy
+    cardName: Sniper Shot
+    cardDescription: Shoots one projectile towards furthest  enemy
     cardRarity: 0
     cardIcon: {fileID: 0}
   BaseValue:
   - StatToAffect: 0
-    Value: 12
+    Value: 20
   - StatToAffect: 4
-    Value: 10
+    Value: 8
   - StatToAffect: 2
-    Value: 10
+    Value: 20
   - StatToAffect: 1
     Value: 10
   - StatToAffect: 3
-    Value: 10
+    Value: 6
   Modifiers: []
-  ProjectilePrefab: {fileID: 79827349592977929, guid: 37447c9384229194b8253711832f1ff7, type: 3}
+  ProjectilePrefab: {fileID: 79827349592977929, guid: 972bd757b69918f4bba13b4f799e9e47, type: 3}
   BehaviourName: ShootRegularlyInRange
