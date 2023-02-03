@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         _camera = GetComponent<Camera>();
+        TargetToFollow = FindObjectOfType<PlayerController>().transform;
     }
     private void FixedUpdate()
     {

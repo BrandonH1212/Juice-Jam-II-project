@@ -17,23 +17,27 @@ public class DisableToggleButton : MonoBehaviour
     {
         _toggleButton.onClick.AddListener(Toggle);
         _cardDisplays = new List<UIcardDisplayScript>(_toggleObj.gameObject.GetComponentsInChildren<UIcardDisplayScript>());
+        _toggleObj.SetActive(false);
 
     }
 
     private void Toggle()
     {
         _toggleObj.SetActive(!_toggleObj.activeSelf);
-        
+
         if (_toggleObj.activeSelf)
         {
+            Time.timeScale = 0.25f;
             foreach (UIcardDisplayScript cardDisplay in _cardDisplays)
             {
                 //print(cardDisplay.gameObject.name);
                 cardDisplay.timeSinceLastCheck = 0;
-                //cardDisplay.gameObject.SetActive(true);
+                cardDisplay.gameObject.SetActive(true);
             }
         }
-        
+        else
+            { Time.timeScale = 1; }
+
         foreach (GameObject obj in _hideOthers)
         {
             obj.SetActive(false);

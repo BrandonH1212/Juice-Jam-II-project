@@ -19949,6 +19949,8 @@ MonoBehaviour:
   Player: {fileID: 1835787186}
   Enemy: {fileID: 2871950534634296121, guid: df9c3287d21eaf44abac1f49edec51a5, type: 3}
   TimeToSpawn: 1
+  TotalTime: 0
+  intensity: 1
 --- !u!225 &1893902486
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -20016,6 +20018,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6913121456242553913, guid: df9c3287d21eaf44abac1f49edec51a5, type: 3}
+      propertyPath: OnSpawnEffect
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df9c3287d21eaf44abac1f49edec51a5, type: 3}
 --- !u!1001 &320728086709809429
@@ -20077,6 +20083,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: OnDamagedEffect
+      value: 
+      objectReference: {fileID: 1835091482895145635, guid: 42eaa064c3954f8479c39274e99ba9e6, type: 3}
     - target: {fileID: 320728085953499814, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: EquipedCards.Array.size
       value: 0
@@ -20168,6 +20178,14 @@ PrefabInstance:
     - target: {fileID: 320728085953499815, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 320728085953499815, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 320728087086947086, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1979760928629373836, guid: f17ea00e6fef2a94e91e58e4f20e472c, type: 3}
       propertyPath: startingLevel

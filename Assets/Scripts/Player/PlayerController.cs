@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 using static UnityEngine.Rendering.VolumeComponent;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class PlayerController : MonoBehaviour
 
     // has to do this since unity doesn't suuport ObserableCollection in inspector natively. I am sorry.
     private List<CardBaseInstance> _lastFrameEquipedCards = new();
-    
+
+
+    [SerializeField]
+    public GameObject OnDamagedEffect;
 
     // DEV:
     // public GameObject BasicShot;
@@ -94,6 +98,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public float damageInterval = 0.2f;
+    private float timeSinceLastDamage = 0;
+
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (timeSinceLastDamage >= damageInterval)
+            {
+                Health -= 5;
+                timeSinceLastDamage = 0;
+                Instantiate(OnDamagedEffect, transform.position, new Quaternion());
+                if (Health <= 0)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    Health = 100;
+                }
+            }
+        }
+    }
+
+
+
     public CardBase GetRandomCard(CardRarity rarity)
     {
         CardDataManager dataManager = CardDataManager.instance;
@@ -163,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
         // flip the sprite based on the velocity
         _spriteRenderer.flipX = _rigidbody2D.velocity.x > 0;
-
+        timeSinceLastDamage += Time.deltaTime;
     }
 
     public void TakeDamage(float damage) 
